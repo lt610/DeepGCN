@@ -3,10 +3,8 @@ import os
 
 import torch as th
 
+from utils.save import generate_path
 
-folder = "data/model_state"
-if not os.path.exists(folder):
-    os.makedirs(folder)
 
 class EarlyStopping(object):
     def __init__(self, patience, min_delta=0., cumulative_delta=False, file_name=None):
@@ -16,10 +14,7 @@ class EarlyStopping(object):
         self.counter = 0
         self.best_score = None
         self.is_stop = False
-        timestr = datetime.datetime.now().strftime("%y%m%d-%H%M%S")
-        if file_name is None:
-            file_name = 'tmp' + '-' + timestr + '.pt'
-        self.path = os.path.join(folder, file_name)
+        self.path = generate_path("data/model_state", file_name, ".pt")
 
     def __call__(self, score, model):
         if self.best_score is None:

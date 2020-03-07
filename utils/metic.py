@@ -23,6 +23,7 @@ def evaluate_loss(model, g, features, labels, mask):
 
 
 def evaluate(model, g, features, labels, mask):
+
     model.eval()
     with th.no_grad():
         logits = model(g, features)
