@@ -56,10 +56,11 @@ def train_and_evaluate(num_epoch, model, optimizer, early_stopping, g, features,
     print("Test Loss {:.4f} | Test Acc {:.4f}".format(test_loss, test_acc))
     print("max val acc:{:.4f}".format(max(val_accs)))
     print("epoch of max val acc:{}".format(val_accs.index(max(val_accs)) + 1))
-    print("last val acc:{:.4f}".format(val_accs[len(val_accs) - 1]))
+    print("min val loss:{:.4f}".format(min(val_losses)))
+    print("epoch of min val loss:{}".format(val_losses.index(min(val_losses)) + 1))
     print("best val score:{:.4f}".format(early_stopping.best_score))
     # print("index:{}".format(val_losses.index(-early_stopping.best_score)))
-    print("epoch of best val score:{}".format(val_accs.index(early_stopping.best_score)))
+    # print("epoch of best val score:{}".format(val_accs.index(early_stopping.best_score)))
 
     # plt.plot(train_losses, color="b")
     # plt.plot(val_losses, color="r")
