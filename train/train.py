@@ -1,3 +1,5 @@
+import random
+
 from utils.early_stopping import EarlyStopping
 from utils.metic import evaluate_acc, evaluate
 import time
@@ -69,3 +71,13 @@ def train_and_evaluate(num_epoch, model, optimizer, early_stopping, g, features,
 
 def grid_search():
     return
+
+
+def set_seed(seed=9699):
+    random.seed(seed)
+    np.random.seed(seed)
+    th.manual_seed(seed)
+    th.cuda.manual_seed(seed)
+    th.backends.cudnn.deterministic = True
+    th.backends.cudnn.benchmark = False
+

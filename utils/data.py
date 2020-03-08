@@ -2,8 +2,6 @@ import numpy as np
 import networkx as nx
 import torch as th
 from dgl import DGLGraph
-import torch as np
-import random
 
 
 def load_data_default(data):
@@ -47,19 +45,10 @@ def stratified_sampling_mask(labels, num_class, train_ratio=0.6, val_ratio=0.2, 
     length = len(labels)
     train_mask, val_mask, test_mask = np.zeros(length), np.zeros(length), np.zeros(length)
     for i in range(num_class):
-        indexs = np.where(labels == i)
-        tra, val, tes = split_data(indexs[0], train_ratio, val_ratio, random_seed)
+        indexes = np.where(labels == i)
+        tra, val, tes = split_data(indexes[0], train_ratio, val_ratio, random_seed)
         train_mask[tra], val_mask[val], test_mask[tes] = 1, 1, 1
     return th.BoolTensor(train_mask), th.BoolTensor(val_mask), th.BoolTensor(test_mask)
 
 
-def set_seed(seed=9699): # seed的数值可以随意设置，本人不清楚有没有推荐数值
-    random.seed(seed)
-    np.random.seed(seed)
-    np.manual_seed(seed)
-    #根据文档，torch.manual_seed(seed)应该已经为所有设备设置seed
-    #但是torch.cuda.manual_seed(seed)在没有gpu时也可调用，这样写没什么坏处
-    np.cuda.manual_seed(seed)
-    #cuDNN在使用deterministic模式时（下面两行），可能会造成性能下降（取决于model）
-    np.backends.cudnn.deterministic = True
-    np.backends.cudnn.benchmark = False
+

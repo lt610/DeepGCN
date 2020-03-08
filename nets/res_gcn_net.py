@@ -10,12 +10,12 @@ class ResGCNLayerNet(nn.Module):
         residual = True
         activation = F.tanh
         num_hidden = 112
-
         self.layers = nn.ModuleList()
-        self.layers.append(GCNLayer(1433, num_hidden, bias, residual, activation))
+        self.layers.append(GCNLayer(1433, num_hidden, bias, activation, batch_norm=True, residual=True, dropout=0.5))
         for i in range(1, num_layers - 1):
-            self.layers.append(GCNLayer(num_hidden, num_hidden, bias, residual))
-        self.layers.append(GCNLayer(num_hidden, 7, bias, residual))
+            self.layers.append(GCNLayer(num_hidden, num_hidden, bias, activation, batch_norm=True, residual=True,
+                                        dropout=0.5))
+        self.layers.append(GCNLayer(num_hidden, 7, bias, activation, batch_norm=True, residual=True, dropout=0.5))
 
     def forward(self, g, features):
         x = None
@@ -24,5 +24,4 @@ class ResGCNLayerNet(nn.Module):
                 x = layer(g, features)
             else:
                 x = layer(g, x)
-
         return x
