@@ -6,6 +6,9 @@ from utils.save import generate_path
 from dgl import DGLGraph
 import numpy as np
 import torch as th
+import torch.nn.functional as F
+
+
 # path = generate_path("data/train_result", "tmp", ".png")
 # a = [i for i in range(100)]
 # b = [(i * 2 +1) for i in range(100)]
@@ -43,9 +46,19 @@ import torch as th
 # b = np.where(a > 0)
 # print(type(b[0]))
 
-data = citegrh.load_cora()
-num_feats, num_classes = data.features.shape[1], data.num_labels
-g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
-# g, features, labels = load_data(data)
-print(len(features))
-print(len(labels))
+# data = citegrh.load_cora()
+# num_feats, num_classes = data.features.shape[1], data.num_labels
+# g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
+# # g, features, labels = load_data(data)
+# print(len(features))
+# print(len(labels))
+
+fun = F.tanh
+print(fun)
+print(type(fun))
+print(id(fun))
+print(id(F.tanh))
+if fun == F.relu:
+    print("T")
+if fun is F.relu:
+    print("T")

@@ -16,6 +16,19 @@ gcn_msg = fn.copy_src(src='h', out='m')
 gcn_reduce = fn.mean(msg='m', out='h')
 
 
+def cal_gain(fun, param=None):
+    gain = 1
+    if fun is F.sigmoid:
+        gain = nn.init.calculate_gain('sigmoid')
+    if fun is F.tanh:
+        gain = nn.init.calculate_gain('tanh')
+    if fun is F.relu:
+        gain = nn.init.calculate_gain('relu')
+    if fun is F.leaky_relu:
+        gain = nn.init.calculate_gain('leaky_relu', param)
+    return gain
+
+
 class Identity(nn.Module):
     def __init__(self):
         super(Identity, self).__init__()
@@ -25,14 +38,9 @@ class Identity(nn.Module):
 
 
 class NodeApplyModule(nn.Module):
-    def __init__(self, in_feats, out_feats, bias=False):
+    def __init__(self, in_dim, out_dim, bias=False):
         super(NodeApplyModule, self).__init__()
-        self.linear = nn.Linear(in_feats, out_feats, bias=bias)
-        self.reset_parameters()
-
-    def reset_parameters(self):
-        gain = nn.init.calculate_gain('tanh')
-        nn.init.xavier_normal_(self.linear.weight, gain=gain)
+        self.linear = nn.Linear(in_dim, out_dim, bias=bias)
 
     def forward(self, node):
         h = self.linear(node.data['h'])
@@ -40,19 +48,19 @@ class NodeApplyModule(nn.Module):
 
 
 class GCNLayer(nn.Module):
-    def __init__(self, in_feats, out_feats, bias=False, activation=None, graph_norm=False,
+    def __init__(self, in_dim, out_dim, bias=False, activation=None, graph_norm=False,
                  batch_norm=False, residual=False, dropout=0):
         super(GCNLayer, self).__init__()
-        self.apply_mod = NodeApplyModule(in_feats, out_feats, bias)
+        self.apply_mod = NodeApplyModule(in_dim, out_dim, bias)
         self.activation = activation
         self.graph_norm = graph_norm
         self.batch_norm = batch_norm
         self.residual = residual
         if batch_norm:
-            self.bn = nn.BatchNorm1d(out_feats)
+            self.bn = nn.BatchNorm1d(out_dim)
         if residual:
-            if in_feats != out_feats:
-                self.res_fc = nn.Linear(in_feats, out_feats, bias)
+            if in_dim != out_dim:
+                self.res_fc = nn.Linear(in_dim, out_dim, bias)
             else:
                 self.res_fc = Identity()
         else:
@@ -61,7 +69,8 @@ class GCNLayer(nn.Module):
         self.reset_parameters()
 
     def reset_parameters(self):
-        gain = nn.init.calculate_gain('tanh')
+        gain = cal_gain(self.activation)
+        nn.init.xavier_normal_(self.apply_mod.linear.weight, gain=gain)
         if isinstance(self.res_fc, nn.Linear):
             nn.init.xavier_normal_(self.res_fc.weight, gain=gain)
 

@@ -1,5 +1,6 @@
 from nets.dense_gcn_net import DenseGCNNet
 from nets.dgl_gcn_net import DglGCNNet
+from nets.res_gat_net import GAT
 from nets.res_gcn_net import ResGCNNet
 from dgl.data import citation_graph as citegrh
 import torch as th
@@ -10,7 +11,7 @@ import matplotlib.pyplot as plt
 import torch.nn.functional as F
 
 device = th.device("cuda:0" if th.cuda.is_available() else "cpu")
-set_seed(42)
+# set_seed(42)
 data = citegrh.load_cora()
 num_feats, num_classes = data.features.shape[1], data.num_labels
 g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
@@ -37,15 +38,15 @@ test_mask = test_mask.to(device)
 test_losses = []
 test_accs = []
 num_hidden = 112
-for i in range(4, 5):
-    model = ResGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=False,
-                      batch_norm=False, residual=True, dropout=0)
+for i in range(2, 3):
+    # model = ResGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=False,
+    #                   batch_norm=True, residual=True, dropout=0.5)
     # model = DenseGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=False,
     #                     batch_norm=True, dropout=0.5)
     # model = DglGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.relu, graph_norm=False)
-    print(model)
-    early_stopping = EarlyStopping(100, file_name="ResGCNNet")
-    # optimizer = th.optim.Adam(model.parameters(), lr=1e-2)
+    model = GAT(num_feats, num_hidden, num_classes, num_heads=2)
+    # print(model)
+    early_stopping = EarlyStopping(20, file_name="ResGCNNet")
     optimizer = th.optim.Adam(model.parameters(), lr=1e-2)
     num_epoch = 400
     model = model.to(device)
