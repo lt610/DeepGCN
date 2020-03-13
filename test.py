@@ -53,12 +53,13 @@ import torch.nn.functional as F
 # print(len(features))
 # print(len(labels))
 
-fun = F.tanh
-print(fun)
-print(type(fun))
-print(id(fun))
-print(id(F.tanh))
-if fun == F.relu:
-    print("T")
-if fun is F.relu:
-    print("T")
+a1 = th.FloatTensor([[1, 2, 3],
+                    [4, 5, 6]])
+a2 = th.FloatTensor([[1, 1, 1],
+                    [1, 1, 1]])
+print(th.stack([a1, a2]))
+b = th.mean(th.stack([a1, a2]), dim = 0)
+print(b)
+
+# a = 'fuck'
+# print(a == 'fuck')

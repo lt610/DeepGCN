@@ -55,9 +55,9 @@ class SingleHeadGATLayer(nn.Module):
         h = torch.sum(alpha * nodes.mailbox['z'], dim=1)
         return {'h': h}
 
-    def forward(self, g, feature):
-        h_pre = feature
-        z = self.fc(feature)
+    def forward(self, g, features):
+        h_pre = features
+        z = self.fc(features)
         g.ndata['z'] = z
         g.apply_edges(self.edge_attention)
         g.update_all(self.message_func, self.reduce_func)
@@ -83,9 +83,9 @@ class GATLayer(nn.Module):
             self.heads.append(SingleHeadGATLayer(in_dim, out_dim, activation, graph_norm, batch_norm, residual, dropout))
         self.merge = merge
 
-    def forward(self, g, feature):
-        head_outs = [attn_head(g, feature) for attn_head in self.heads]
+    def forward(self, g, features):
+        head_outs = [attn_head(g, features) for attn_head in self.heads]
         if self.merge == 'cat':
             return torch.cat(head_outs, dim=1)
         else:
-            return torch.mean(torch.stack(head_outs))
+            return torch.mean(torch.stack(head_outs), dim=0)
