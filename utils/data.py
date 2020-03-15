@@ -2,7 +2,8 @@ import numpy as np
 import networkx as nx
 import torch as th
 from dgl import DGLGraph
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as pltzzz
+
 
 def load_data_default(data):
     features = th.FloatTensor(data.features)

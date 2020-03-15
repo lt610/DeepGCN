@@ -9,7 +9,7 @@ import torch as th
 import torch.nn.functional as F
 
 
-# path = generate_path("data/train_result", "tmp", ".png")
+# path = generate_path("result/train_result", "tmp", ".png")
 # a = [i for i in range(100)]
 # b = [(i * 2 +1) for i in range(100)]
 # plt.plot(a, color="r")
@@ -46,10 +46,10 @@ import torch.nn.functional as F
 # b = np.where(a > 0)
 # print(type(b[0]))
 
-# data = citegrh.load_cora()
-# num_feats, num_classes = data.features.shape[1], data.num_labels
-# g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
-# # g, features, labels = load_data(data)
+# result = citegrh.load_cora()
+# num_feats, num_classes = result.features.shape[1], result.num_labels
+# g, features, labels, train_mask, val_mask, test_mask = load_data_default(result)
+# # g, features, labels = load_data(result)
 # print(len(features))
 # print(len(labels))
 
