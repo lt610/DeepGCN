@@ -5,20 +5,20 @@ import torch.nn.functional as F
 
 class ResGCNNet(nn.Module):
     def __init__(self, num_feats, num_classes, num_hidden, num_layers, bias=False, activation=F.tanh, graph_norm=False,
-                 batch_norm=False, residual=False, dropout=0):
+                 batch_norm=False, pair_norm=False, residual=False, dropout=0):
         super(ResGCNNet, self).__init__()
         self.num_layers = num_layers
         self.layers = nn.ModuleList()
         for i in range(0, num_layers):
             if i == 0:
                 self.layers.append(
-                    GCNLayer(num_feats, num_hidden, bias, activation, graph_norm, batch_norm, residual, dropout))
+                    GCNLayer(num_feats, num_hidden, bias, activation, graph_norm, batch_norm, pair_norm, residual, dropout))
             elif i == num_layers - 1:
                 self.layers.append(
-                    GCNLayer(num_hidden, num_classes, bias, activation, graph_norm, batch_norm, residual, dropout))
+                    GCNLayer(num_hidden, num_classes, bias, activation, graph_norm, batch_norm, pair_norm, residual, dropout))
             else:
                 self.layers.append(
-                    GCNLayer(num_hidden, num_hidden, bias, activation, graph_norm, batch_norm, residual, dropout))
+                    GCNLayer(num_hidden, num_hidden, bias, activation, graph_norm, batch_norm, pair_norm, residual, dropout))
 
     def forward(self, g, features):
         x = None
