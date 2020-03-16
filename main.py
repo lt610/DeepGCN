@@ -1,3 +1,4 @@
+from nets.dense_gat_net import DenseGATNet
 from nets.dense_gcn_net import DenseGCNNet
 from nets.dgl_gcn_net import DglGCNNet
 from nets.res_gat_net import ResGATNet
@@ -13,14 +14,15 @@ from dgl import DGLGraph
 from utils.data_other import load_data_from_file
 
 device = th.device("cuda:0" if th.cuda.is_available() else "cpu")
-# set_seed(42)
+set_seed(42)
 # data = citegrh.load_cora()
 # num_feats, num_classes = data.features.shape[1], data.num_labels
 # g, features, labels, train_mask, val_mask, test_mask = load_data_default(result)
 # g, features, labels = load_data(data)
 # train_mask, val_mask, test_mask = stratified_sampling_mask(data.labels, num_classes, 0.6, 0.2)
 
-g, features, labels, train_mask, val_mask, test_mask, num_feats, num_classes = load_data_from_file('chameleon', None, 0.6, 0.2)
+g, features, labels, train_mask, val_mask, test_mask, num_feats, num_classes = load_data_from_file('chameleon', None,
+                                                                                                   0.6, 0.2)
 
 # print_graph_info(g)
 # g = cut_graph(g, labels, num_classes)
@@ -44,18 +46,20 @@ test_mask = test_mask.to(device)
 
 test_losses = []
 test_accs = []
-num_hidden = 112
-for i in range(2, 3):
-    # model = ResGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=False,
-    #                   batch_norm=False, residual=True, dropout=0)
+num_hidden = 58
+for i in range(2, 4):
+    model = ResGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=False,
+                      batch_norm=False, residual=True, dropout=0)
     # model = DenseGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=False,
-    #                     batch_norm=True, dropout=0)
+    #                     batch_norm=True, dropout=0.5)
     # model = DglGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.relu, graph_norm=True)
-    model = ResGATNet(num_feats, num_classes, num_hidden, i, num_heads=2, merge='cat',
-                      activation=F.elu, graph_norm=False, batch_norm=False, residual=True, dropout=0)
+    # model = ResGATNet(num_feats, num_classes, num_hidden, i, num_heads=1, merge='cat',
+    #                   activation=F.elu, graph_norm=False, batch_norm=True, residual=True, dropout=0.5)
+    # model = DenseGATNet(num_feats, num_classes, num_hidden, i, num_heads=1, merge='cat',
+    #                     activation=F.elu, graph_norm=False, batch_norm=True, dropout=0.5)
     print(model)
-    early_stopping = EarlyStopping(50, file_name="Try")
-    optimizer = th.optim.Adam(model.parameters(), lr=1e-2, weight_decay=1e-2)
+    early_stopping = EarlyStopping(100, file_name="Try")
+    optimizer = th.optim.Adam(model.parameters(), lr=1e-2)
     num_epoch = 400
     model = model.to(device)
     test_loss, test_acc = train_and_evaluate(num_epoch, model, optimizer, early_stopping, g, features, labels,

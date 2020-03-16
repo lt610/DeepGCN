@@ -10,13 +10,15 @@ class ResGCNNet(nn.Module):
         self.num_layers = num_layers
         self.layers = nn.ModuleList()
         for i in range(0, num_layers):
-            in_feats, out_feats = num_hidden, num_hidden
             if i == 0:
-                in_feats = num_feats
-            if i == num_layers - 1:
-                out_feats = num_classes
-            self.layers.append(
-                GCNLayer(in_feats, out_feats, bias, activation, graph_norm, batch_norm, residual, dropout))
+                self.layers.append(
+                    GCNLayer(num_feats, num_hidden, bias, activation, graph_norm, batch_norm, residual, dropout))
+            elif i == num_layers - 1:
+                self.layers.append(
+                    GCNLayer(num_hidden, num_classes, bias, activation, graph_norm, batch_norm, residual, dropout))
+            else:
+                self.layers.append(
+                    GCNLayer(num_hidden, num_hidden, bias, activation, graph_norm, batch_norm, residual, dropout))
 
     def forward(self, g, features):
         x = None
