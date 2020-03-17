@@ -15,7 +15,7 @@ from dgl import DGLGraph
 from layers.pair_norm import PairNorm
 
 gcn_msg = fn.copy_src(src='h', out='m')
-gcn_reduce = fn.mean(msg='m', out='h')
+gcn_reduce = fn.sum(msg='m', out='h')
 
 
 def cal_gain(fun, param=None):
@@ -51,7 +51,7 @@ class NodeApplyModule(nn.Module):
 
 class GCNLayer(nn.Module):
     def __init__(self, in_dim, out_dim, bias=False, activation=None, graph_norm=False,
-                 batch_norm=False, pair_norm=False, residual=False, dropout=0):
+                 batch_norm=False, pair_norm=False, residual=False, dropout=0, init_beta=1., learn_beta=True):
         super(GCNLayer, self).__init__()
         self.apply_mod = NodeApplyModule(in_dim, out_dim, bias)
         self.activation = activation
@@ -64,6 +64,11 @@ class GCNLayer(nn.Module):
         if pair_norm:
             self.pn = PairNorm(mode='PN-SCS', scale=1)
         if residual:
+            if learn_beta:
+                self.beta = nn.Parameter(th.Tensor([init_beta]))
+            else:
+                self.register_buffer('beta', th.Tensor([init_beta]))
+            self.alpha = nn.Parameter(th.Tensor([1.]))
             if in_dim != out_dim:
                 self.res_fc = nn.Linear(in_dim, out_dim, bias)
             else:
@@ -79,14 +84,19 @@ class GCNLayer(nn.Module):
         if isinstance(self.res_fc, nn.Linear):
             nn.init.xavier_normal_(self.res_fc.weight, gain=gain)
 
-    def forward(self, g, feature):
-        h_pre = feature
-        g.ndata['h'] = feature
+    def forward(self, g, features):
+        h_pre = features
+        if self.graph_norm:
+            degs = g.in_degrees().float().clamp(min=1)
+            norm = th.pow(degs, -0.5)
+            norm = norm.to(features.device).unsqueeze(1)
+            features = features * norm
+
+        g.ndata['h'] = features
         g.update_all(gcn_msg, gcn_reduce)
         g.apply_nodes(func=self.apply_mod)
         h = g.ndata['h']
-        if self.graph_norm:
-            print("not")
+
         if self.batch_norm:
             h = self.bn(h)
         if self.pair_norm:
@@ -94,7 +104,11 @@ class GCNLayer(nn.Module):
         if self.activation is not None:
             h = self.activation(h)
         if self.res_fc is not None:
-            h = h + self.res_fc(h_pre)
+            # # h = h + self.res_fc(h_pre)
+            # print("beta:{}".format(self.beta))
+            # h = h + self.beta * self.res_fc(h_pre)
+            h = self.alpha * h + self.beta * self.res_fc(h_pre)
+            # h = (1 - self.beta) * h + self.beta * self.res_fc(h_pre)
         h = self.dropout(h)
         return h
 

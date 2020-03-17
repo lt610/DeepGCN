@@ -1,4 +1,4 @@
-import torch
+import torch as th
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -43,7 +43,7 @@ class SingleHeadGATLayer(nn.Module):
             nn.init.xavier_normal_(self.res_fc.weight, gain=cal_gain(self.activation))
 
     def edge_attention(self, edges):
-        z2 = torch.cat([edges.src['z'], edges.dst['z']], dim=1)
+        z2 = th.cat([edges.src['z'], edges.dst['z']], dim=1)
         a = self.attn_fc(z2)
         return {'e': F.leaky_relu(a)}
 
@@ -52,18 +52,23 @@ class SingleHeadGATLayer(nn.Module):
 
     def reduce_func(self, nodes):
         alpha = F.softmax(nodes.mailbox['e'], dim=1)
-        h = torch.sum(alpha * nodes.mailbox['z'], dim=1)
+        h = th.sum(alpha * nodes.mailbox['z'], dim=1)
         return {'h': h}
 
     def forward(self, g, features):
         h_pre = features
+
+        if self.graph_norm:
+            degs = g.in_degrees().float().clamp(min=1)
+            norm = th.pow(degs, -0.5)
+            norm = norm.to(features.device).unsqueeze(1)
+            features = features * norm
+
         z = self.fc(features)
         g.ndata['z'] = z
         g.apply_edges(self.edge_attention)
         g.update_all(self.message_func, self.reduce_func)
         h = g.ndata['h']
-        if self.graph_norm:
-            print("wait")
         if self.batch_norm:
             h = self.bn(h)
         if self.activation:
@@ -86,6 +91,6 @@ class GATLayer(nn.Module):
     def forward(self, g, features):
         head_outs = [attn_head(g, features) for attn_head in self.heads]
         if self.merge == 'cat':
-            return torch.cat(head_outs, dim=1)
+            return th.cat(head_outs, dim=1)
         else:
-            return torch.mean(torch.stack(head_outs), dim=0)
+            return th.mean(th.stack(head_outs), dim=0)
