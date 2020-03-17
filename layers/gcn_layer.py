@@ -68,7 +68,7 @@ class GCNLayer(nn.Module):
                 self.beta = nn.Parameter(th.Tensor([init_beta]))
             else:
                 self.register_buffer('beta', th.Tensor([init_beta]))
-            self.alpha = nn.Parameter(th.Tensor([1.]))
+            # self.alpha = nn.Parameter(th.Tensor([1.]))
             if in_dim != out_dim:
                 self.res_fc = nn.Linear(in_dim, out_dim, bias)
             else:
@@ -85,6 +85,7 @@ class GCNLayer(nn.Module):
             nn.init.xavier_normal_(self.res_fc.weight, gain=gain)
 
     def forward(self, g, features):
+        g = g.local_var()
         h_pre = features
         if self.graph_norm:
             degs = g.in_degrees().float().clamp(min=1)
@@ -106,8 +107,8 @@ class GCNLayer(nn.Module):
         if self.res_fc is not None:
             # # h = h + self.res_fc(h_pre)
             # print("beta:{}".format(self.beta))
-            # h = h + self.beta * self.res_fc(h_pre)
-            h = self.alpha * h + self.beta * self.res_fc(h_pre)
+            h = h + self.beta * self.res_fc(h_pre)
+            # h = self.alpha * h + self.beta * self.res_fc(h_pre)
             # h = (1 - self.beta) * h + self.beta * self.res_fc(h_pre)
         h = self.dropout(h)
         return h

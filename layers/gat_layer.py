@@ -56,6 +56,7 @@ class SingleHeadGATLayer(nn.Module):
         return {'h': h}
 
     def forward(self, g, features):
+        g = g.local_var()
         h_pre = features
 
         if self.graph_norm:
