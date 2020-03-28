@@ -22,15 +22,15 @@ from nets.dgl_agnn_net import DglAPPNPNet
 device = th.device("cuda:0" if th.cuda.is_available() else "cpu")
 set_seed(42)
 
-data = citegrh.load_cora()
-num_feats, num_classes = data.features.shape[1], data.num_labels
-g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
+# data = citegrh.load_cora()
+# num_feats, num_classes = data.features.shape[1], data.num_labels
+# g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
 
 # g, features, labels = load_data(data)
 # train_mask, val_mask, test_mask = stratified_sampling_mask(data.labels, num_classes, 0.6, 0.2)
 
-# g, features, labels, train_mask, val_mask, test_mask, num_feats, num_classes = load_data_from_file('squirrel', None,
-#                                                                                                    0.6, 0.2)
+g, features, labels, train_mask, val_mask, test_mask, num_feats, num_classes = load_data_from_file('chameleon', None,
+                                                                                                   0.6, 0.2)
 
 # print_graph_info(g)
 # g = cut_graph(g, labels, num_classes)
@@ -55,16 +55,17 @@ test_mask = test_mask.to(device)
 test_losses = []
 test_accs = []
 num_hidden = 112
-for i in range(9, 10):
+for i in range(2, 4):
     model = ResGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=True,
-                      batch_norm=False, pair_norm=False, residual=True, dropout=0, init_beta=1., learn_beta=False)
+                      batch_norm=False, pair_norm=False, residual=True, dropout=0, dropedge=0, init_beta=1.,
+                      learn_beta=False)
     # model = DenseGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=False,
     #                     batch_norm=True, dropout=0.5)
     # model = DglGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.relu, graph_norm=True)
     # model = DglAGNNNet(num_feats, num_classes, i, bias=False)
-    # model = ResAGNNNet(num_feats, num_classes, num_hidden, i, project=True, bias=False, activation=F.tanh,
-    #                    init_beta=1., learn_beta=True,
-    #                    batch_norm=False, residual=True, dropout=0)
+    # model = ResAGNNNet(num_feats, num_classes, num_hidden, i, project=True, bias=False, activation=F.relu,
+    #                    init_beta=1., learn_beta=False,
+    #                    batch_norm=False, residual=False, dropout=0)
     # model = ResGATNet(num_feats, num_classes, num_hidden, i, num_heads=1, merge='cat',
     #                   activation=F.elu, graph_norm=False, batch_norm=False, residual=False, dropout=0)
     # model = DenseGATNet(num_feats, num_classes, num_hidden, i, num_heads=1, merge='cat',

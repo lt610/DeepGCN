@@ -12,7 +12,7 @@ class DenseGCNNet(nn.Module):
         self.layers = nn.ModuleList()
         self.layers.append(GCNLayer(num_feats, num_hidden, bias, activation, graph_norm, batch_norm, dropout))
         for i in range(1, num_layers - 1):
-            self.layers.append(GCNLayer(num_hidden * i, num_hidden, bias, activation, graph_norm, batch_norm, dropout))
+            self.layers.append(GCNLayer(num_hidden * i, num_hidden, bias, None, graph_norm, batch_norm, dropout))
         self.layers.append(GCNLayer(num_hidden * (num_layers - 1), num_classes, bias, activation, graph_norm, batch_norm, dropout))
 
     def forward(self, g, features):

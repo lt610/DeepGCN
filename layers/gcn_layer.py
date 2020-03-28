@@ -5,7 +5,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from dgl import DGLGraph
 
-
 # def gcn_message_func(edges):
 #     return {'h' : edges.src['h']}
 #
@@ -51,7 +50,7 @@ class NodeApplyModule(nn.Module):
 
 class GCNLayer(nn.Module):
     def __init__(self, in_dim, out_dim, bias=False, activation=None, graph_norm=False,
-                 batch_norm=False, pair_norm=False, residual=False, dropout=0, init_beta=1., learn_beta=True):
+                 batch_norm=False, pair_norm=False, residual=False, dropout=0, dropedge=0, init_beta=1., learn_beta=True):
         super(GCNLayer, self).__init__()
         self.apply_mod = NodeApplyModule(in_dim, out_dim, bias)
         self.activation = activation
@@ -76,6 +75,7 @@ class GCNLayer(nn.Module):
         else:
             self.register_buffer('res_fc', None)
         self.dropout = nn.Dropout(dropout)
+        self.edge_drop = nn.Dropout(dropedge)
         self.reset_parameters()
 
     def reset_parameters(self):
@@ -88,15 +88,24 @@ class GCNLayer(nn.Module):
         g = g.local_var()
         h_pre = features
         if self.graph_norm:
-            degs = g.in_degrees().float().clamp(min=1)
-            norm = th.pow(degs, -0.5)
-            norm = norm.to(features.device).unsqueeze(1)
+            norm = th.pow(g.in_degrees().float().clamp(min=1), -0.5)
+            shp = norm.shape + (1,) * (features.dim() - 1)
+            norm = th.reshape(norm, shp).to(features.device)
             features = features * norm
 
         g.ndata['h'] = features
-        g.update_all(gcn_msg, gcn_reduce)
+
+        g.edata['w'] = self.edge_drop(
+            th.ones(g.number_of_edges(), 1).to(features.device))
+        g.update_all(fn.u_mul_e('h', 'w', 'm'),
+                     fn.sum('m', 'h'))
+
+        # g.update_all(gcn_msg, gcn_reduce)
         g.apply_nodes(func=self.apply_mod)
         h = g.ndata['h']
+
+        if self.graph_norm:
+            h = h * norm
 
         if self.batch_norm:
             h = self.bn(h)
@@ -112,4 +121,3 @@ class GCNLayer(nn.Module):
             # h = (1 - self.beta) * h + self.beta * self.res_fc(h_pre)
         h = self.dropout(h)
         return h
-

@@ -8,13 +8,15 @@ class DglGCNNet(nn.Module):
         super(DglGCNNet, self).__init__()
         self.layers = nn.ModuleList()
         for i in range(0, num_layers):
-            in_feats, out_feats = num_hidden, num_hidden
             if i == 0:
-                in_feats = num_feats
-            if i == num_layers - 1:
-                out_feats = num_classes
-            self.layers.append(
-                GraphConv(in_feats, out_feats, graph_norm, bias, activation))
+                self.layers.append(
+                    GraphConv(num_feats, num_hidden, graph_norm, bias, activation))
+            elif i == num_layers - 1:
+                self.layers.append(
+                    GraphConv(num_hidden, num_classes, graph_norm, bias, None))
+            else:
+                self.layers.append(
+                    GraphConv(num_hidden, num_hidden, graph_norm, bias, activation))
 
     def forward(self, g, features):
         x = None

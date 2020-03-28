@@ -18,7 +18,7 @@ class ResAGNNNet(nn.Module):
                               residual, dropout))
             elif i == num_layers - 1:
                 self.layers.append(
-                    AGNNLayer(num_hidden, num_classes, True, bias, activation, init_beta, learn_beta, batch_norm,
+                    AGNNLayer(num_hidden, num_classes, True, bias, None, init_beta, learn_beta, batch_norm,
                               residual, dropout))
             else:
                 self.layers.append(

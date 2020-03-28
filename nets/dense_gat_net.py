@@ -17,7 +17,7 @@ class DenseGATNet(nn.Module):
             self.layers.append(GATLayer(num_hidden * num_heads * i, num_hidden, num_heads, merge, activation,
                                         graph_norm, batch_norm, dropout))
         self.layers.append(
-            GATLayer(num_hidden * num_heads * (num_layers - 1), num_classes, 1, 'mean', activation,
+            GATLayer(num_hidden * num_heads * (num_layers - 1), num_classes, 1, 'mean', None,
                                         graph_norm, batch_norm, dropout))
 
     def forward(self, g, features):
