@@ -49,9 +49,10 @@ import torch.nn.functional as F
 # result = citegrh.load_cora()
 # num_feats, num_classes = result.features.shape[1], result.num_labels
 # g, features, labels, train_mask, val_mask, test_mask = load_data_default(result)
-# # g, features, labels = load_data(result)
-# print(len(features))
-# print(len(labels))
+
+# g, features, labels = load_data(result)
+# print(g.in_degrees().shape)
+# print(features.shape)
 
 # a1 = th.FloatTensor([[1, 2, 3],
 #                     [4, 5, 6]])
@@ -61,5 +62,17 @@ import torch.nn.functional as F
 # b = th.mean(th.stack([a1, a2]), dim = 0)
 # print(b)
 
-a = th.ones(10, 2)
-print(a)
+
+# a = (1, 2) + (1,)
+# b = (1, 2) + (1,) * 2
+
+# a = th.ones(3, 4)
+# b = th.tensor([1, 2, 3, 4])
+# print(a + b)
+# print(a * b)
+
+a = th.tensor([2, 1, 3, 4, 0, 0])
+values, indices = a.topk(3, largest=False, sorted=True)
+print(values)
+print(indices)
+print(a.size()[0])

@@ -55,27 +55,27 @@ test_mask = test_mask.to(device)
 test_losses = []
 test_accs = []
 num_hidden = 112
-for i in range(2, 4):
-    model = ResGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=True,
-                      batch_norm=False, pair_norm=False, residual=True, dropout=0, dropedge=0, init_beta=1.,
-                      learn_beta=False)
+for i in range(8, 9):
+    # model = ResGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=True,
+    #                   batch_norm=False, pair_norm=False, residual=False, dropout=0, dropedge=0, init_beta=1.,
+    #                   learn_beta=False)
     # model = DenseGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=False,
     #                     batch_norm=True, dropout=0.5)
     # model = DglGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.relu, graph_norm=True)
     # model = DglAGNNNet(num_feats, num_classes, i, bias=False)
-    # model = ResAGNNNet(num_feats, num_classes, num_hidden, i, project=True, bias=False, activation=F.relu,
-    #                    init_beta=1., learn_beta=False,
-    #                    batch_norm=False, residual=False, dropout=0)
+    model = ResAGNNNet(num_feats, num_classes, num_hidden, i, project=True, bias=False, activation=F.tanh,
+                       init_beta=1., learn_beta=False,
+                       batch_norm=False, residual=False, dropout=0)
     # model = ResGATNet(num_feats, num_classes, num_hidden, i, num_heads=1, merge='cat',
-    #                   activation=F.elu, graph_norm=False, batch_norm=False, residual=False, dropout=0)
+    #                   activation=F.elu, graph_norm=False, batch_norm=False, residual=True, dropout=0)
     # model = DenseGATNet(num_feats, num_classes, num_hidden, i, num_heads=1, merge='cat',
     #                     activation=F.elu, graph_norm=False, batch_norm=True, dropout=0.5)
     # model = SGConv(num_feats, num_classes, i, cached=True)
     # model = DglAPNNNet(num_feats, num_classes, i, alpha=0.1, bias=False, activation=F.tanh)
     # model = ResMLPNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, batch_norm=False,
-    #                   residual=True, dropout=0)
+    #                   residual=False, dropout=0)
     print(model)
-    early_stopping = EarlyStopping(100, file_name="Try")
+    early_stopping = EarlyStopping(50, file_name="Try")
     optimizer = th.optim.Adam(model.parameters(), lr=1e-2)
     num_epoch = 400
     model = model.to(device)

@@ -60,9 +60,9 @@ class SingleHeadGATLayer(nn.Module):
         h_pre = features
 
         if self.graph_norm:
-            degs = g.in_degrees().float().clamp(min=1)
-            norm = th.pow(degs, -0.5)
-            norm = norm.to(features.device).unsqueeze(1)
+            norm = th.pow(g.in_degrees().float().clamp(min=1), -1)
+            shp = norm.shape + (1,) * (features.dim() - 1)
+            norm = th.reshape(norm, shp).to(features.device)
             features = features * norm
 
         z = self.fc(features)
@@ -70,6 +70,7 @@ class SingleHeadGATLayer(nn.Module):
         g.apply_edges(self.edge_attention)
         g.update_all(self.message_func, self.reduce_func)
         h = g.ndata['h']
+
         if self.batch_norm:
             h = self.bn(h)
         if self.activation:

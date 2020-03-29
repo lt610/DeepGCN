@@ -55,6 +55,12 @@ class AGNNLayer(nn.Module):
         g.apply_edges(fn.u_dot_v('norm_h', 'norm_h', 'cos'))
         cos = g.edata.pop('cos')
         e = self.beta * cos
+
+        cut_graph = 0.5
+        k = int(e.size()[0] * cut_graph)
+        _, indices = e.topk(k, largest=False, sorted=False)
+        e[indices] = 0
+
         g.edata['p'] = edge_softmax(g, e)
         g.update_all(fn.u_mul_e('h', 'p', 'm'), fn.sum('m', 'h'))
         h = g.ndata['h']
