@@ -70,6 +70,7 @@ def train_and_evaluate(num_epoch, model, optimizer, early_stopping, g, features,
     # plt.show()
     return test_loss, test_acc
 
+
 def grid_search():
     return
 

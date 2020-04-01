@@ -13,7 +13,12 @@ class DenseGCNNet(nn.Module):
         self.layers.append(GCNLayer(num_feats, num_hidden, bias, activation, graph_norm, batch_norm, dropout))
         for i in range(1, num_layers - 1):
             self.layers.append(GCNLayer(num_hidden * i, num_hidden, bias, None, graph_norm, batch_norm, dropout))
-        self.layers.append(GCNLayer(num_hidden * (num_layers - 1), num_classes, bias, activation, graph_norm, batch_norm, dropout))
+        self.layers.append(GCNLayer(num_hidden * (num_layers - 1), num_classes, bias, activation, graph_norm,
+                                    batch_norm, dropout))
+        # for i in range(1, num_layers - 1):
+        #     self.layers.append(GCNLayer(num_hidden * i + num_feats, num_hidden, bias, None, graph_norm, batch_norm, dropout))
+        # self.layers.append(GCNLayer(num_hidden * (num_layers - 1) + num_feats, num_classes, bias, activation, graph_norm,
+        #                             batch_norm, dropout))
 
     def forward(self, g, features):
         pres = []
@@ -27,4 +32,13 @@ class DenseGCNNet(nn.Module):
             else:
                 x = layer(g, th.cat(pres, 1))
                 pres.append(x)
+        # for i, layer in enumerate(self.layers):
+        #     if i == 0:
+        #         x = layer(g, features)
+        #         pres.append(x)
+        #     elif i == self.num_layers-1:
+        #         x = layer(g, th.cat(pres, 1))
+        #     else:
+        #         x = layer(g, th.cat(pres, 1))
+        #         pres.append(x)
         return x

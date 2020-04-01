@@ -51,12 +51,13 @@ class AGNNLayer(nn.Module):
         h_pre = features
         g = g.local_var()
         g.ndata['h'] = features
+
         g.ndata['norm_h'] = F.normalize(features, p=2, dim=-1)
         g.apply_edges(fn.u_dot_v('norm_h', 'norm_h', 'cos'))
         cos = g.edata.pop('cos')
         e = self.beta * cos
 
-        cut_graph = 0.5
+        cut_graph = 0
         k = int(e.size()[0] * cut_graph)
         _, indices = e.topk(k, largest=False, sorted=False)
         e[indices] = 0

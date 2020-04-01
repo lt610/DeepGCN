@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from dgl.data import citation_graph as citegrh
+from sklearn.manifold import Isomap
 
 from utils.data import draw_part_graph, print_graph_info, cut_graph, load_data_default
 from utils.save import generate_path
@@ -71,8 +72,16 @@ import torch.nn.functional as F
 # print(a + b)
 # print(a * b)
 
-a = th.tensor([2, 1, 3, 4, 0, 0])
-values, indices = a.topk(3, largest=False, sorted=True)
-print(values)
-print(indices)
-print(a.size()[0])
+# a = th.tensor([2, 1, 3, 4, 0, 0])
+# values, indices = a.topk(3, largest=False, sorted=True)
+# print(values)
+# print(indices)
+# print(a.size()[0])
+
+features = [[i for i in range(6)], [i for i in range(6, 12)], [i for i in range(12, 18)],
+            [i for i in range(18, 24)]]
+print(features)
+n_components = 3
+isomap = Isomap( n_components=n_components, n_neighbors=2)
+features = isomap.fit_transform(features)
+print(features)
