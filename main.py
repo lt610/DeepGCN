@@ -66,7 +66,7 @@ test_accs = []
 num_hidden = 112
 
 
-for i in range(8, 9):
+for i in range(2, 3):
     # model = ResGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=True,
     #                   batch_norm=False, pair_norm=False, residual=True, dropout=0, dropedge=0, init_beta=1.,
     #                   learn_beta=False)
@@ -78,13 +78,13 @@ for i in range(8, 9):
     #                    init_beta=1., learn_beta=False,
     #                    batch_norm=False, residual=False, dropout=0)
     # model = ResGATNet(num_feats, num_classes, num_hidden, i, num_heads=1, merge='cat',
-    #                   activation=F.elu, graph_norm=False, batch_norm=False, residual=True, dropout=0)
+    #                   activation=F.elu, graph_norm=False, batch_norm=False, residual=False, dropout=0)
     # model = DenseGATNet(num_feats, num_classes, num_hidden, i, num_heads=1, merge='cat',
     # #                     activation=F.elu, graph_norm=False, batch_norm=True, dropout=0.5)
-    model = SGCLayer(num_feats, num_classes, i, cached=True, bias=False, graph_norm=True, pair_norm=False,
-                     dropedge=0, cutgraph=0.6)
+    # model = SGCLayer(num_feats, num_classes, i, cached=True, bias=False, graph_norm=True, pair_norm=False,
+    #                  dropedge=0, cutgraph=0)
     # model = RootSGCNet(num_feats, num_classes, num_hidden, cached=True, bias=False, dropedge=0, cutgraph=0)
-    # model = DglAPNNNet(num_feats, num_classes, i, alpha=0.9, bias=False, activation=None)
+    # model = DglAPNNNet(num_feats, num_classes, i, alpha=1, bias=False, activation=None)
     # model = ResMLPNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, batch_norm=False,
     #                   residual=False, dropout=0)
     print(model)
