@@ -8,7 +8,7 @@ from dgl import DGLGraph
 import numpy as np
 import torch as th
 import torch.nn.functional as F
-
+import dgl.function as fn
 
 # path = generate_path("result/train_result", "tmp", ".png")
 # a = [i for i in range(100)]
@@ -78,10 +78,31 @@ import torch.nn.functional as F
 # print(indices)
 # print(a.size()[0])
 
-features = [[i for i in range(6)], [i for i in range(6, 12)], [i for i in range(12, 18)],
-            [i for i in range(18, 24)]]
-print(features)
-n_components = 3
-isomap = Isomap( n_components=n_components, n_neighbors=2)
-features = isomap.fit_transform(features)
-print(features)
+# features = [[i for i in range(6)], [i for i in range(6, 12)], [i for i in range(12, 18)],
+#             [i for i in range(18, 24)]]
+# print(features)
+# n_components = 3
+# isomap = Isomap( n_components=n_components, n_neighbors=2)
+# features = isomap.fit_transform(features)
+# print(features)
+# a = th.tensor([1, 2, 3])
+# b = th.tensor([4, 5, 6])
+# c = th.cat([a, b])
+# print(c)
+# g = DGLGraph()
+# g.add_nodes(4)
+# g.add_edges([0, 1, 2, 3], [1, 2, 3, 0])   # 0 -> 1, 1 -> 2
+# g.ndata['y'] = th.ones(4, 4)
+# g.edata
+# g.apply_edges(fn.u_dot_v('y', 'y', 'cos'), edges=[0, 1])
+# e = g.edata.pop('cos')
+# print(e)
+# t = th.where(e > 0., e, th.tensor(1.0))
+# print(t)
+# values, indices = e.topk(3, largest=False, sorted=False)
+# print(values)
+# print(indices)
+# print(g.out_degrees())
+a = th.Tensor([1, 2, 3, 4, 5, 6])
+b = F.dropout(a, p=0.5)
+print(b)
