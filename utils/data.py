@@ -52,6 +52,24 @@ def stratified_sampling_mask(labels, num_classes, train_ratio=0.6, val_ratio=0.2
     return th.BoolTensor(train_mask), th.BoolTensor(val_mask), th.BoolTensor(test_mask)
 
 
+def erase_features(features, val_mask, test_mask, p=0, random_seed=None):
+    if p != 0:
+        if p == 1:
+            features[val_mask] = 0
+            features[test_mask] = 0
+        else:
+            if random_seed:
+                np.random.seed(random_seed)
+            val_indexes = np.where(val_mask == True)[0]
+            test_indexs = np.where(test_mask == True)[0]
+            shuffled_val_indices = np.random.permutation(len(val_indexes))
+            shuffled_test_indices = np.random.permutation(len(test_indexs))
+            val_erase = shuffled_val_indices[int(len(val_indexes) * p)]
+            test_erase = shuffled_test_indices[int(len(test_indexs) * p)]
+            features[val_erase] = 0
+            features[test_erase] = 0
+
+
 def print_data_info(data):
     print('  NumNodes: {}'.format(data.graph.number_of_nodes()))
     print('  NumEdges: {}'.format(data.graph.number_of_edges()))

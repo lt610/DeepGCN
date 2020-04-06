@@ -12,14 +12,15 @@ import torch as th
 from nets.res_mlp_net import ResMLPNet
 from nets.root_sgc_net import RootSGCNet
 from train.train import train_and_evaluate, set_seed
-from utils.data import load_data_default, load_data, stratified_sampling_mask, cut_graph, print_graph_info
+from utils.data import load_data_default, load_data, stratified_sampling_mask, cut_graph, print_graph_info, \
+    erase_features
 from utils.early_stopping import EarlyStopping
 import matplotlib.pyplot as plt
 import torch.nn.functional as F
 from dgl import DGLGraph
 from utils.data_other import load_data_from_file
 from dgl.nn.pytorch import SGConv, APPNPConv
-from nets.dgl_agnn_net import DglAPPNPNet
+from nets.dgl_agnn_net import DglAGNNNet
 from sklearn.manifold import Isomap
 
 
@@ -33,7 +34,7 @@ set_seed(42)
 # g, features, labels = load_data(data)
 # train_mask, val_mask, test_mask = stratified_sampling_mask(data.labels, num_classes, 0.6, 0.2)
 
-g, features, labels, train_mask, val_mask, test_mask, num_feats, num_classes = load_data_from_file('wisconsin', None,
+g, features, labels, train_mask, val_mask, test_mask, num_feats, num_classes = load_data_from_file('chameleon', None,
                                                                                                    0.6, 0.2)
 
 # print_graph_info(g)
@@ -42,6 +43,7 @@ g, features, labels, train_mask, val_mask, test_mask, num_feats, num_classes = l
 # g = DGLGraph(g)
 # print_graph_info(g)
 
+# erase_features(features, val_mask, test_mask, p=1)
 
 # optimizer = th.optim.Adam([
 #                 {'params': net.gcn0.parameters()},
@@ -66,7 +68,7 @@ test_accs = []
 num_hidden = 112
 
 
-for i in range(2, 3):
+for i in range(2, 5):
     # model = ResGCNNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, graph_norm=True,
     #                   batch_norm=False, pair_norm=False, residual=True, dropout=0, dropedge=0, init_beta=1.,
     #                   learn_beta=False)
@@ -81,8 +83,8 @@ for i in range(2, 3):
     #                   activation=F.elu, graph_norm=False, batch_norm=False, residual=False, dropout=0)
     # model = DenseGATNet(num_feats, num_classes, num_hidden, i, num_heads=1, merge='cat',
     # #                     activation=F.elu, graph_norm=False, batch_norm=True, dropout=0.5)
-    # model = SGCLayer(num_feats, num_classes, i, cached=True, bias=False, graph_norm=True, pair_norm=False,
-    #                  dropedge=0, cutgraph=0)
+    model = SGCLayer(num_feats, num_classes, i, cached=True, bias=False, graph_norm=True, pair_norm=False,
+                     dropedge=0, cutgraph=0.8)
     # model = RootSGCNet(num_feats, num_classes, num_hidden, cached=True, bias=False, dropedge=0, cutgraph=0)
     # model = DglAPNNNet(num_feats, num_classes, i, alpha=1, bias=False, activation=None)
     # model = ResMLPNet(num_feats, num_classes, num_hidden, i, bias=False, activation=F.tanh, batch_norm=False,

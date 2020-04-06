@@ -16,7 +16,7 @@ class SGCLayer(nn.Module):
         self.graph_norm = graph_norm
         self.pair_norm = pair_norm
         if pair_norm:
-            self.pn = PairNorm(mode='PN-SCS', scale=1)
+            self.pn = PairNorm(mode='PN', scale=1)
         self.edge_drop = nn.Dropout(dropedge)
         self.graph_cut = cutgraph
         self.reset_parameters()
@@ -29,7 +29,7 @@ class SGCLayer(nn.Module):
     def forward(self, g, features):
         g = g.local_var()
         # if self.graph_cut > 0:
-        #     k1 = int(g.number_of_nodes() * 0.5)
+        #     k1 = int(g.number_of_nodes() * 0.8)
         #     degrees = g.in_degrees() + g.out_degrees()
         #     _, indices = degrees.topk(k1, largest=False, sorted=False)
         #     edges = th.cat([g.in_edges(indices, 'eid'), g.out_edges(indices, 'eid')])
@@ -42,7 +42,8 @@ class SGCLayer(nn.Module):
                 degs = g.in_degrees().float().clamp(min=1)
                 norm = th.pow(degs, -0.5)
                 norm = norm.to(features.device).unsqueeze(1)
-
+            if self.pair_norm:
+                self.pn(features)
             # compute (D^-1 A^k D)^k X
             for i in range(self._k):
                 w = th.ones(g.number_of_edges(), 1).to(features.device)
@@ -61,14 +62,16 @@ class SGCLayer(nn.Module):
                         g.apply_edges(fn.u_dot_v('norm_h', 'norm_h', 'cos'))
                         e = g.edata.pop('cos')
                         k = int(e.size()[0] * self.graph_cut)
-                        _, indices = e.topk(k, largest=False, sorted=False)
+                        _, cut_indices = e.topk(k, largest=False, sorted=False)
 
-                        w[indices] = 0
+                        # shuffled_indices = np.random.permutation(edges.size()[0])
+                        # indices = shuffled_indices[int(edges.size()[0] * self.graph_cut)-1]
+                        # cut_indices = edges[indices]
+
+                        w[cut_indices] = 0
                 g.edata['w'] = w
                 if self.graph_norm:
                     features = features * norm
-                if self.pair_norm:
-                    self.pn(features)
                 g.ndata['h'] = features
                 g.update_all(fn.u_mul_e('h', 'w', 'm'),
                              fn.sum('m', 'h'))

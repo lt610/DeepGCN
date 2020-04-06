@@ -3,9 +3,9 @@ import torch.nn.functional as F
 from dgl.nn.pytorch import AGNNConv
 
 
-class DglAPPNPNet(nn.Module):
+class DglAGNNNet(nn.Module):
     def __init__(self, num_feats, num_classes, num_layers, bias=False):
-        super(DglAPPNPNet, self).__init__()
+        super(DglAGNNNet, self).__init__()
         self.layers = nn.ModuleList()
         for i in range(0, num_layers):
             self.layers.append(AGNNConv())

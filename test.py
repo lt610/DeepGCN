@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from dgl.data import citation_graph as citegrh
 from sklearn.manifold import Isomap
 
-from utils.data import draw_part_graph, print_graph_info, cut_graph, load_data_default
+from utils.data import draw_part_graph, print_graph_info, cut_graph, load_data_default, erase_features
 from utils.save import generate_path
 from dgl import DGLGraph
 import numpy as np
@@ -103,6 +103,7 @@ import dgl.function as fn
 # print(values)
 # print(indices)
 # print(g.out_degrees())
-a = th.Tensor([1, 2, 3, 4, 5, 6])
-b = F.dropout(a, p=0.5)
-print(b)
+# a = th.Tensor([1, 2, 3, 4, 5, 6])
+# b = F.dropout(a, p=0.5)
+# print(b)
+
