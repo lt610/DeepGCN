@@ -5,7 +5,7 @@ from layers.agnn_layer import AGNNLayer
 
 class ResAGNNNet(nn.Module):
     def __init__(self, num_feats, num_classes, num_hidden, num_layers, project=False, bias=False, activation=F.tanh, init_beta=1., learn_beta=True,
-                 batch_norm=False, residual=False, dropout=0):
+                 batch_norm=False, residual=False, dropout=0, cutgraph=0):
         super(ResAGNNNet, self).__init__()
         self.num_layers = num_layers
         self.layers = nn.ModuleList()
@@ -15,15 +15,15 @@ class ResAGNNNet(nn.Module):
             if i == 0:
                 self.layers.append(
                     AGNNLayer(num_feats, num_hidden, project, bias, activation, init_beta, learn_beta, batch_norm,
-                              residual, dropout))
+                              residual, dropout, cutgraph))
             elif i == num_layers - 1:
                 self.layers.append(
                     AGNNLayer(num_hidden, num_classes, True, bias, None, init_beta, learn_beta, batch_norm,
-                              residual, dropout))
+                              residual, dropout, cutgraph))
             else:
                 self.layers.append(
                     AGNNLayer(num_hidden, num_hidden, project, bias, activation, init_beta, learn_beta, batch_norm,
-                              residual, dropout))
+                              residual, dropout, cutgraph))
 
     def forward(self, g, features):
         x = None

@@ -50,7 +50,7 @@ class NodeApplyModule(nn.Module):
 
 class GCNLayer(nn.Module):
     def __init__(self, in_dim, out_dim, bias=False, activation=None, graph_norm=False,
-                 batch_norm=False, pair_norm=False, residual=False, dropout=0, dropedge=0, init_beta=1., learn_beta=True):
+                 batch_norm=False, pair_norm=False, residual=False, dropout=0, dropedge=0, cutgraph=0, init_beta=1., learn_beta=True):
         super(GCNLayer, self).__init__()
         self.apply_mod = NodeApplyModule(in_dim, out_dim, bias)
         self.activation = activation
@@ -76,6 +76,7 @@ class GCNLayer(nn.Module):
             self.register_buffer('res_fc', None)
         self.dropout = nn.Dropout(dropout)
         self.edge_drop = nn.Dropout(dropedge)
+        self.graph_cut = cutgraph
         self.reset_parameters()
 
     def reset_parameters(self):
@@ -95,8 +96,17 @@ class GCNLayer(nn.Module):
 
         g.ndata['h'] = features
 
-        g.edata['w'] = self.edge_drop(
-            th.ones(g.number_of_edges(), 1).to(features.device))
+        w = th.ones(g.number_of_edges(), 1).to(features.device)
+        w = self.edge_drop(w)
+        if self.graph_cut > 0:
+            g.ndata['norm_h'] = F.normalize(features, p=2, dim=-1)
+            g.apply_edges(fn.u_dot_v('norm_h', 'norm_h', 'cos'))
+            e = g.edata.pop('cos')
+            k = int(e.size()[0] * self.graph_cut)
+            _, cut_indices = e.topk(k, largest=False, sorted=False)
+            w[cut_indices] = 0
+        g.edata['w'] = w
+
         g.update_all(fn.u_mul_e('h', 'w', 'm'),
                      fn.sum('m', 'h'))
 

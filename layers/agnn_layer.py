@@ -17,7 +17,7 @@ class Identity(nn.Module):
 
 class AGNNLayer(nn.Module):
     def __init__(self, in_dim, out_dim, project=True, bias=False, activation=None, init_beta=1., learn_beta=True,
-                 batch_norm=False, residual=False, dropout=0):
+                 batch_norm=False, residual=False, dropout=0, cutgraph=0):
         super(AGNNLayer, self).__init__()
         if learn_beta:
             self.beta = nn.Parameter(th.Tensor([init_beta]))
@@ -38,6 +38,7 @@ class AGNNLayer(nn.Module):
         else:
             self.register_buffer('res_fc', None)
         self.dropout = nn.Dropout(dropout)
+        self.graph_cut = cutgraph
         self.reset_parameters()
 
     def reset_parameters(self):
@@ -56,11 +57,10 @@ class AGNNLayer(nn.Module):
         g.apply_edges(fn.u_dot_v('norm_h', 'norm_h', 'cos'))
         cos = g.edata.pop('cos')
         e = self.beta * cos
-
-        cut_graph = 0
-        k = int(e.size()[0] * cut_graph)
-        _, indices = e.topk(k, largest=False, sorted=False)
-        e[indices] = 0
+        if self.graph_cut > 0:
+            k = int(e.size()[0] * self.graph_cut)
+            _, indices = e.topk(k, largest=False, sorted=False)
+            e[indices] = 0
 
         g.edata['p'] = edge_softmax(g, e)
         g.update_all(fn.u_mul_e('h', 'p', 'm'), fn.sum('m', 'h'))
