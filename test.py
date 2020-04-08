@@ -1,7 +1,9 @@
+import itertools
+
 import matplotlib.pyplot as plt
 from dgl.data import citation_graph as citegrh
 from sklearn.manifold import Isomap
-
+from sklearn.grid_search import GridSearchCV
 from utils.data import draw_part_graph, print_graph_info, cut_graph, load_data_default, erase_features
 from utils.save import generate_path
 from dgl import DGLGraph
@@ -107,3 +109,23 @@ import dgl.function as fn
 # b = F.dropout(a, p=0.5)
 # print(b)
 
+# a = 1
+# b = 2
+# print(id(a))
+# print(id(b))
+
+a = [1, 2, ]
+b = ['a', 'b']
+c = [True, False]
+d = itertools.product(a, b, c)
+for i in d:
+    print(type(i))
+    print(i)
+    print(i[0])
+
+# a, b, c = 1, 2,\
+#           3
+# print(c)
+a = {}
+# a['a'] = 1
+# print(a)
