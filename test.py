@@ -114,18 +114,21 @@ import dgl.function as fn
 # print(id(a))
 # print(id(b))
 
-a = [1, 2, ]
-b = ['a', 'b']
-c = [True, False]
-d = itertools.product(a, b, c)
-for i in d:
-    print(type(i))
-    print(i)
-    print(i[0])
+# a = [1, 2, ]
+# b = ['a', 'b']
+# c = [True, False]
+# d = itertools.product(a, b, c)
+# for i in d:
+#     print(type(i))
+#     print(i)
+#     print(i[0])
+#
+# # a, b, c = 1, 2,\
+# #           3
+# # print(c)
+# a = {}
+# # a['a'] = 1
+# # print(a)
 
-# a, b, c = 1, 2,\
-#           3
-# print(c)
-a = {}
-# a['a'] = 1
-# print(a)
+a = [1, 2, 3]
+print(np.mean(a))

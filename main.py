@@ -24,6 +24,7 @@ from utils.data_other import load_data_from_file
 from dgl.nn.pytorch import SGConv, APPNPConv
 from nets.dgl_agnn_net import DglAGNNNet
 from sklearn.manifold import Isomap
+import numpy as np
 
 
 def train1(data_params, model_params):
@@ -76,17 +77,17 @@ def train1(data_params, model_params):
     model = model.to(device)
     test_loss, test_acc = train_and_evaluate(num_epoch, model, optimizer, early_stopping, g, features, labels,
                                              train_mask, val_mask, test_mask)
-
+    return test_loss, test_acc
 
 def train2():
     device = th.device("cuda:0" if th.cuda.is_available() else "cpu")
     set_seed(42)
     data_params = {}
     model_params = {}
-    dataset_name = ['chameleon']
+    dataset_name = ['wisconsin']
     model_name = ['SGCLayer']
     num_hidden = [128]
-    layers = [i for i in range(2, 4)]
+    layers = [i for i in range(2, 5)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
@@ -103,53 +104,70 @@ def train2():
 
     params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, cutgraph,
                                learn_rate, weight_decay)
+    pre_dataset = ''
+    losses = []
+    acces = []
     for param in params:
         model_params['dataset_name'], model_params['model_name'], model_params['num_hidden'],\
-            model_params[layers], model_params['dropout'], model_params['dropedge'],\
+            model_params['layers'], model_params['dropout'], model_params['dropedge'],\
             model_params['cutgraph'], model_params['learn_rate'], model_params['weight_decay'] = param[0],\
             param[1], param[2], param[3], param[4], param[5], param[6], param[7], param[8]
-        # data = citegrh.load_cora()
-        # num_feats, num_classes = data.features.shape[1], data.num_labels
-        # g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
+        if model_params['dataset_name'] != pre_dataset:
+            pre_dataset = model_params['dataset_name']
+            # data = citegrh.load_cora()
+            # num_feats, num_classes = data.features.shape[1], data.num_labels
+            # g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
 
-        # g, features, labels = load_data(data)
-        # train_mask, val_mask, test_mask = stratified_sampling_mask(data.labels, num_classes, 0.6, 0.2)
+            # g, features, labels = load_data(data)
+            # train_mask, val_mask, test_mask = stratified_sampling_mask(data.labels, num_classes, 0.6, 0.2)
 
-        g, features, labels, train_mask, val_mask, test_mask, num_feats,\
-            num_classes = load_data_from_file(model_params['dataset_name'], None, 0.6, 0.2)
+            g, features, labels, train_mask, val_mask, test_mask, num_feats,\
+                num_classes = load_data_from_file(model_params['dataset_name'], None, 0.6, 0.2)
 
-        # print_graph_info(g)
-        # g = cut_graph(g, labels, num_classes)
-        # g = g.to_networkx()
-        # g = DGLGraph(g)
-        # print_graph_info(g)
+            # print_graph_info(g)
+            # g = cut_graph(g, labels, num_classes)
+            # g = g.to_networkx()
+            # g = DGLGraph(g)
+            # print_graph_info(g)
 
-        # erase_features(features, val_mask, test_mask, p=1)
+            # erase_features(features, val_mask, test_mask, p=1)
 
-        # optimizer = th.optim.Adam([
-        #                 {'params': net.gcn0.parameters()},
-        #                 {'params': net.gcns.parameters()},
-        #                 {'params': net.gcnk.parameters()}
-        #             ],lr=1e-2)
+            # optimizer = th.optim.Adam([
+            #                 {'params': net.gcn0.parameters()},
+            #                 {'params': net.gcns.parameters()},
+            #                 {'params': net.gcnk.parameters()}
+            #             ],lr=1e-2)
 
-        # n_components = int(num_feats * 0.8)
-        # isomap = Isomap(n_components=n_components, n_neighbors=100)
-        # features = th.FloatTensor(isomap.fit_transform(features))
-        # num_feats = n_components
+            # n_components = int(num_feats * 0.8)
+            # isomap = Isomap(n_components=n_components, n_neighbors=100)
+            # features = th.FloatTensor(isomap.fit_transform(features))
+            # num_feats = n_components
 
-        g = g.to(device)
-        features = features.to(device)
-        labels = labels.to(device)
-        train_mask = train_mask.to(device)
-        val_mask = val_mask.to(device)
-        test_mask = test_mask.to(device)
+            g = g.to(device)
+            features = features.to(device)
+            labels = labels.to(device)
+            train_mask = train_mask.to(device)
+            val_mask = val_mask.to(device)
+            test_mask = test_mask.to(device)
 
-        data_params['device'], data_params['g'], data_params['features'], data_params['labels'],\
-            data_params['train_mask'], data_params['val_mask'], data_params['test_mask'],\
-            data_params['num_feats'], data_params['num_classes'] = device, g, features, labels,\
-            train_mask, val_mask, test_mask, num_feats, num_classes
-
-        train1(data_params, model_params)
+            data_params['device'], data_params['g'], data_params['features'], data_params['labels'],\
+                data_params['train_mask'], data_params['val_mask'], data_params['test_mask'],\
+                data_params['num_feats'], data_params['num_classes'] = device, g, features, labels,\
+                train_mask, val_mask, test_mask, num_feats, num_classes
+        losses1 = []
+        acces1 = []
+        for i in range(3):
+            test_loss, test_acc = train1(data_params, model_params)
+            losses1.append(test_loss)
+            acces1.append(test_acc)
+        # print(losses1)
+        # print(acces1)
+        loss = np.max(losses1)
+        acc = np.max(acces1)
+        losses.append(loss)
+        acces.append(acc)
+    print('loss:{}'.format(losses))
+    print('acc:{}'.format(acces))
 
 
 if __name__ == '__main__':
