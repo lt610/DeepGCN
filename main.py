@@ -79,15 +79,16 @@ def train1(data_params, model_params):
                                              train_mask, val_mask, test_mask)
     return test_loss, test_acc
 
+
 def train2():
     device = th.device("cuda:0" if th.cuda.is_available() else "cpu")
-    set_seed(42)
+    # set_seed(42)
     data_params = {}
     model_params = {}
-    dataset_name = ['wisconsin']
+    dataset_name = ['chameleon']
     model_name = ['SGCLayer']
     num_hidden = [128]
-    layers = [i for i in range(2, 5)]
+    layers = [i for i in range(2, 10)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
@@ -123,6 +124,7 @@ def train2():
 
             g, features, labels, train_mask, val_mask, test_mask, num_feats,\
                 num_classes = load_data_from_file(model_params['dataset_name'], None, 0.6, 0.2)
+            train_mask, val_mask, test_mask = stratified_sampling_mask(labels, num_classes, 0.6, 0.2, random_seed=42)
 
             # print_graph_info(g)
             # g = cut_graph(g, labels, num_classes)
@@ -130,7 +132,7 @@ def train2():
             # g = DGLGraph(g)
             # print_graph_info(g)
 
-            # erase_features(features, val_mask, test_mask, p=1)
+            erase_features(features, val_mask, test_mask, p=0)
 
             # optimizer = th.optim.Adam([
             #                 {'params': net.gcn0.parameters()},
@@ -162,8 +164,8 @@ def train2():
             acces1.append(test_acc)
         # print(losses1)
         # print(acces1)
-        loss = np.max(losses1)
-        acc = np.max(acces1)
+        loss = np.mean(losses1)
+        acc = np.mean(acces1)
         losses.append(loss)
         acces.append(acc)
     print('loss:{}'.format(losses))
