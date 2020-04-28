@@ -82,13 +82,13 @@ def train1(data_params, model_params):
 
 def train2():
     device = th.device("cuda:0" if th.cuda.is_available() else "cpu")
-    # set_seed(42)
+    set_seed(42)
     data_params = {}
     model_params = {}
-    dataset_name = ['chameleon']
+    dataset_name = ['cora']
     model_name = ['SGCLayer']
     num_hidden = [128]
-    layers = [i for i in range(2, 10)]
+    layers = [i for i in range(3, 8)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
@@ -99,7 +99,7 @@ def train2():
 
     dropout = [0]
     dropedge = [0]
-    cutgraph = [0]
+    cutgraph = [0.05]
     learn_rate = [1e-2]
     weight_decay = [0]
 
@@ -115,16 +115,16 @@ def train2():
             param[1], param[2], param[3], param[4], param[5], param[6], param[7], param[8]
         if model_params['dataset_name'] != pre_dataset:
             pre_dataset = model_params['dataset_name']
-            # data = citegrh.load_cora()
-            # num_feats, num_classes = data.features.shape[1], data.num_labels
-            # g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
+            data = citegrh.load_cora()
+            num_feats, num_classes = data.features.shape[1], data.num_labels
+            g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
 
             # g, features, labels = load_data(data)
             # train_mask, val_mask, test_mask = stratified_sampling_mask(data.labels, num_classes, 0.6, 0.2)
 
-            g, features, labels, train_mask, val_mask, test_mask, num_feats,\
-                num_classes = load_data_from_file(model_params['dataset_name'], None, 0.6, 0.2)
-            train_mask, val_mask, test_mask = stratified_sampling_mask(labels, num_classes, 0.6, 0.2, random_seed=42)
+            # g, features, labels, train_mask, val_mask, test_mask, num_feats,\
+            #     num_classes = load_data_from_file(model_params['dataset_name'], None, 0.6, 0.2)
+            # train_mask, val_mask, test_mask = stratified_sampling_mask(labels, num_classes, 0.6, 0.2, random_seed=42)
 
             # print_graph_info(g)
             # g = cut_graph(g, labels, num_classes)
@@ -164,8 +164,8 @@ def train2():
             acces1.append(test_acc)
         # print(losses1)
         # print(acces1)
-        loss = np.mean(losses1)
-        acc = np.mean(acces1)
+        loss = np.max(losses1)
+        acc = np.max(acces1)
         losses.append(loss)
         acces.append(acc)
     print('loss:{}'.format(losses))

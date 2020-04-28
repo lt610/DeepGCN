@@ -68,7 +68,7 @@ class SGCLayer(nn.Module):
                         # indices = shuffled_indices[int(edges.size()[0] * self.graph_cut)-1]
                         # cut_indices = edges[indices]
 
-                        w[cut_indices] = 0
+                        w[cut_indices] = 1e-5
                 g.edata['w'] = w
                 if self.graph_norm:
                     features = features * norm
