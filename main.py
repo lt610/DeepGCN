@@ -3,7 +3,7 @@ import itertools
 from layers.sgc_layer import SGCLayer
 from nets.dense_gat_net import DenseGATNet
 from nets.dense_gcn_net import DenseGCNNet
-from nets.dgl_appnp_net import DglAPNNNet
+from nets.dgl_appnp_net import DglAPPNPNet
 from nets.dgl_gcn_net import DglGCNNet
 from nets.res_agnn_net import ResAGNNNet
 from nets.res_gat_net import ResGATNet
@@ -36,6 +36,7 @@ def train1(data_params, model_params):
         dropout, dropedge, cutgraph = model_params['num_hidden'], model_params['layers'], model_params['bias'], \
         model_params['activation'], model_params['graph_norm'], model_params['batch_norm'], model_params['pair_norm'],\
         model_params['residual'], model_params['dropout'], model_params['dropedge'], model_params['cutgraph']
+    alpha = model_params['alpha']
     model_name = model_params['model_name']
     learn_rate, weight_decay = model_params['learn_rate'], model_params['weight_decay']
     if model_name == 'ResMLPNet':
@@ -65,13 +66,13 @@ def train1(data_params, model_params):
         model = DenseGATNet(num_feats, num_classes, num_hidden, layers, num_heads=1, merge='cat',
                             activation=F.elu, graph_norm=graph_norm, batch_norm=batch_norm, dropout=dropout)
     if model_name == 'DglAPNNNet':
-        model = DglAPNNNet(num_feats, num_classes, layers, alpha=1, bias=bias, activation=None)
+        model = DglAPPNPNet(num_feats, num_classes, layers, alpha=alpha, bias=bias, activation=None)
     if model_name == 'ResAGNNNet':
         model = ResAGNNNet(num_feats, num_classes, num_hidden, layers, project=True, bias=bias, activation=activation,
                            init_beta=1., learn_beta=False,
                            batch_norm=batch_norm, residual=residual, dropout=dropout, cutgraph=cutgraph)
     print(model)
-    early_stopping = EarlyStopping(50, file_name="Try")
+    early_stopping = EarlyStopping(25, file_name="Try")
     optimizer = th.optim.Adam(model.parameters(), lr=learn_rate, weight_decay=weight_decay)
     num_epoch = 400
     model = model.to(device)
@@ -85,10 +86,10 @@ def train2():
     set_seed(42)
     data_params = {}
     model_params = {}
-    dataset_name = ['cora']
-    model_name = ['SGCLayer']
+    dataset_name = ['chameleon']
+    model_name = ['DglAPNNNet']
     num_hidden = [128]
-    layers = [i for i in range(3, 8)]
+    layers = [i for i in range(40, 41)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
@@ -99,12 +100,13 @@ def train2():
 
     dropout = [0]
     dropedge = [0]
-    cutgraph = [0.05]
+    cutgraph = [0]
+    alpha = [0.8]
     learn_rate = [1e-2]
     weight_decay = [0]
 
     params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, cutgraph,
-                               learn_rate, weight_decay)
+                               learn_rate, weight_decay, alpha)
     pre_dataset = ''
     losses = []
     acces = []
@@ -113,17 +115,18 @@ def train2():
             model_params['layers'], model_params['dropout'], model_params['dropedge'],\
             model_params['cutgraph'], model_params['learn_rate'], model_params['weight_decay'] = param[0],\
             param[1], param[2], param[3], param[4], param[5], param[6], param[7], param[8]
+        model_params['alpha'] = param[9]
         if model_params['dataset_name'] != pre_dataset:
             pre_dataset = model_params['dataset_name']
-            data = citegrh.load_cora()
-            num_feats, num_classes = data.features.shape[1], data.num_labels
-            g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
+            # data = citegrh.load_cora()
+            # num_feats, num_classes = data.features.shape[1], data.num_labels
+            # g, features, labels, train_mask, val_mask, test_mask = load_data_default(data)
 
             # g, features, labels = load_data(data)
             # train_mask, val_mask, test_mask = stratified_sampling_mask(data.labels, num_classes, 0.6, 0.2)
 
-            # g, features, labels, train_mask, val_mask, test_mask, num_feats,\
-            #     num_classes = load_data_from_file(model_params['dataset_name'], None, 0.6, 0.2)
+            g, features, labels, train_mask, val_mask, test_mask, num_feats,\
+                num_classes = load_data_from_file(model_params['dataset_name'], None, 0.6, 0.2)
             # train_mask, val_mask, test_mask = stratified_sampling_mask(labels, num_classes, 0.6, 0.2, random_seed=42)
 
             # print_graph_info(g)
@@ -158,7 +161,7 @@ def train2():
                 train_mask, val_mask, test_mask, num_feats, num_classes
         losses1 = []
         acces1 = []
-        for i in range(3):
+        for i in range(2):
             test_loss, test_acc = train1(data_params, model_params)
             losses1.append(test_loss)
             acces1.append(test_acc)
