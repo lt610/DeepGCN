@@ -86,10 +86,10 @@ def train2():
     set_seed(42)
     data_params = {}
     model_params = {}
-    dataset_name = ['chameleon']
-    model_name = ['DglAPNNNet']
+    dataset_name = ['cora']
+    model_name = ['ResGCNNet']
     num_hidden = [128]
-    layers = [i for i in range(40, 41)]
+    layers = [i for i in range(16, 17)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
@@ -103,7 +103,7 @@ def train2():
     cutgraph = [0]
     alpha = [0.8]
     learn_rate = [1e-2]
-    weight_decay = [0]
+    weight_decay = [1e-2]
 
     params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, cutgraph,
                                learn_rate, weight_decay, alpha)
@@ -161,7 +161,7 @@ def train2():
                 train_mask, val_mask, test_mask, num_feats, num_classes
         losses1 = []
         acces1 = []
-        for i in range(2):
+        for i in range(1):
             test_loss, test_acc = train1(data_params, model_params)
             losses1.append(test_loss)
             acces1.append(test_acc)
