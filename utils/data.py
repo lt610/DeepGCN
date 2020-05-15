@@ -2,7 +2,7 @@ import numpy as np
 import networkx as nx
 import torch as th
 from dgl import DGLGraph
-import matplotlib.pyplot as pltzzz
+import matplotlib.pyplot as plt
 
 
 def load_data_default(data):
@@ -116,5 +116,5 @@ def cut_graph(graph, labels, num_classes):
     return graph
 
 
-
-
+def draw(train_accs0, train_accs1, test_accs0, test_accs1):
+    return

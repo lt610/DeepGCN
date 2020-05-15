@@ -1,0 +1,9 @@
+
+train_acc:[99.83, 100.0]
+test_acc:[85.14, 83.53]
+train_acc:[94.97, 90.77]
+test_acc:[87.15, 87.95]
+train_acc:[45.64]
+test_acc:[42.17]
+train_acc:[37.75]
+test_acc:[37.75]

@@ -52,7 +52,7 @@ def train_and_evaluate(num_epoch, model, optimizer, early_stopping, g, features,
     train_losses, train_accs, val_losses, val_accs = train_net(num_epoch, model, optimizer, early_stopping, g,
                                                                features, labels, train_mask, val_mask)
     test_loss, test_acc = evaluate(model, g, features, labels, test_mask)
-
+    train_loss, train_acc = evaluate(model, g, features, labels, train_mask)
     print("Test Loss {:.4f} | Test Acc {:.4f}".format(test_loss, test_acc))
     print("max val acc:{:.4f}".format(max(val_accs)))
     print("epoch of max val acc:{}".format(val_accs.index(max(val_accs)) + 1))
@@ -68,7 +68,7 @@ def train_and_evaluate(num_epoch, model, optimizer, early_stopping, g, features,
     # plt.plot(train_accs, color="b")
     # plt.plot(val_accs, color="r")
     # plt.show()
-    return test_loss, test_acc
+    return train_loss, train_acc, test_loss, test_acc
 
 
 def grid_search():

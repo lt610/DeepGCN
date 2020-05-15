@@ -1,6 +1,7 @@
 import itertools
 
 import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif'] = ['SimHei']
 from dgl.data import citation_graph as citegrh
 from sklearn.manifold import Isomap
 from sklearn.grid_search import GridSearchCV
@@ -129,6 +130,24 @@ import dgl.function as fn
 # a = {}
 # # a['a'] = 1
 # # print(a)
+#
+# a = [1, 2, 3]
+# print(np.mean(a))
+# ls = [3, 4, 5, 8, 9]
+# with open('result/train_result/result.txt', 'a') as f:
+#     f.write(str(ls)+'\n')
+x = np.arange(1, 11, 1)
+y1 = x
+y2 = x * 2
+y3 = x * 3
+y4 = x * 4
 
-a = [1, 2, 3]
-print(np.mean(a))
+plt.title('示例')
+plt.xlabel('层数')
+plt.ylabel('准确率')
+plt.plot(x, y1, color='green', linestyle='-', marker='o', label='train')
+plt.plot(x, y2, color='green', linestyle=':', marker='o', label='train1')
+plt.plot(x, y3, color='blue', linestyle='-', marker='o', label='test')
+plt.plot(x, y4, color='blue', linestyle=':', marker='o', label='test1')
+plt.legend()
+plt.show()

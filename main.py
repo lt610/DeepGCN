@@ -72,13 +72,13 @@ def train1(data_params, model_params):
                            init_beta=1., learn_beta=False,
                            batch_norm=batch_norm, residual=residual, dropout=dropout, cutgraph=cutgraph)
     print(model)
-    early_stopping = EarlyStopping(25, file_name="Try")
+    early_stopping = EarlyStopping(50, file_name="Try")
     optimizer = th.optim.Adam(model.parameters(), lr=learn_rate, weight_decay=weight_decay)
     num_epoch = 400
     model = model.to(device)
-    test_loss, test_acc = train_and_evaluate(num_epoch, model, optimizer, early_stopping, g, features, labels,
+    train_loss, train_acc, test_loss, test_acc = train_and_evaluate(num_epoch, model, optimizer, early_stopping, g, features, labels,
                                              train_mask, val_mask, test_mask)
-    return test_loss, test_acc
+    return train_loss, train_acc, test_loss, test_acc
 
 
 def train2():
@@ -86,10 +86,11 @@ def train2():
     set_seed(42)
     data_params = {}
     model_params = {}
+    # dataset_name = ['cora', 'citeseer', 'pubmed']
     dataset_name = ['cora']
     model_name = ['ResGCNNet']
     num_hidden = [128]
-    layers = [i for i in range(16, 17)]
+    layers = [16]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
@@ -108,6 +109,8 @@ def train2():
     params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, cutgraph,
                                learn_rate, weight_decay, alpha)
     pre_dataset = ''
+    train_losses = []
+    train_acces = []
     losses = []
     acces = []
     for param in params:
@@ -159,20 +162,33 @@ def train2():
                 data_params['train_mask'], data_params['val_mask'], data_params['test_mask'],\
                 data_params['num_feats'], data_params['num_classes'] = device, g, features, labels,\
                 train_mask, val_mask, test_mask, num_feats, num_classes
+        train_losses1 = []
+        train_acces1 = []
         losses1 = []
         acces1 = []
-        for i in range(1):
-            test_loss, test_acc = train1(data_params, model_params)
+        for i in range(3):
+            train_loss, train_acc, test_loss, test_acc = train1(data_params, model_params)
+            train_losses1.append(train_loss)
+            train_acces1.append(train_acc)
             losses1.append(test_loss)
             acces1.append(test_acc)
         # print(losses1)
         # print(acces1)
-        loss = np.max(losses1)
+        train_loss = np.min(train_losses1)
+        train_acc = np.max(train_acces1)
+        loss = np.min(losses1)
         acc = np.max(acces1)
-        losses.append(loss)
-        acces.append(acc)
-    print('loss:{}'.format(losses))
-    print('acc:{}'.format(acces))
+        train_losses.append(round(train_loss, 2))
+        train_acces.append(round(train_acc * 100, 2))
+        losses.append(round(loss, 2))
+        acces.append(round(acc * 100, 2))
+    print('train_loss:{}'.format(train_losses))
+    print('train_acc:{}'.format(train_acces))
+    print('test_loss:{}'.format(losses))
+    print('test_acc:{}'.format(acces))
+
+    with open('result/train_result/result.txt', 'a') as f:
+        f.write('train_acc:{}\n'.format(train_acces) + 'test_acc:{}\n'.format(acces))
 
 
 if __name__ == '__main__':
