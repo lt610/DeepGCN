@@ -116,5 +116,19 @@ def cut_graph(graph, labels, num_classes):
     return graph
 
 
-def draw(train_accs0, train_accs1, test_accs0, test_accs1):
-    return
+def draw(title, method, train_accs0, train_accs1, test_accs0, test_accs1):
+    x = np.arange(1, 17)
+    plt.title(title)
+    plt.xlabel('Number of Layers')
+    plt.ylabel('Accuracy')
+    plt.xticks(x)
+    plt.xlim(0.5, 16.5)
+    # plt.ylim(0, 1)
+    marker = 'o'
+    ms = 4
+    plt.plot(x, train_accs0, color='green', linestyle='--', marker=marker, ms=ms, label='Train')
+    plt.plot(x, train_accs1, color='orange', linestyle='-', marker=marker, ms=ms, label='Train({})'.format(method))
+    plt.plot(x, test_accs0, color='red', linestyle='--', marker=marker, ms=ms, label='Test')
+    plt.plot(x, test_accs1, color='blueviolet', linestyle='-', marker=marker, ms=ms, label='Test({})'.format(method))
+    plt.legend()
+    plt.show()

@@ -72,9 +72,9 @@ def train1(data_params, model_params):
                            init_beta=1., learn_beta=False,
                            batch_norm=batch_norm, residual=residual, dropout=dropout, cutgraph=cutgraph)
     print(model)
-    early_stopping = EarlyStopping(50, file_name="Try")
+    early_stopping = EarlyStopping(200, file_name="Try")
     optimizer = th.optim.Adam(model.parameters(), lr=learn_rate, weight_decay=weight_decay)
-    num_epoch = 400
+    num_epoch = 200
     model = model.to(device)
     train_loss, train_acc, test_loss, test_acc = train_and_evaluate(num_epoch, model, optimizer, early_stopping, g, features, labels,
                                              train_mask, val_mask, test_mask)
@@ -87,10 +87,10 @@ def train2():
     data_params = {}
     model_params = {}
     # dataset_name = ['cora', 'citeseer', 'pubmed']
-    dataset_name = ['cora']
+    dataset_name = ['pubmed']
     model_name = ['ResGCNNet']
     num_hidden = [128]
-    layers = [16]
+    layers = [i for i in range(1, 17)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
@@ -104,7 +104,7 @@ def train2():
     cutgraph = [0]
     alpha = [0.8]
     learn_rate = [1e-2]
-    weight_decay = [1e-2]
+    weight_decay = [0]
 
     params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, cutgraph,
                                learn_rate, weight_decay, alpha)
@@ -166,7 +166,7 @@ def train2():
         train_acces1 = []
         losses1 = []
         acces1 = []
-        for i in range(3):
+        for i in range(2):
             train_loss, train_acc, test_loss, test_acc = train1(data_params, model_params)
             train_losses1.append(train_loss)
             train_acces1.append(train_acc)

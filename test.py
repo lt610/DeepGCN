@@ -1,11 +1,10 @@
 import itertools
 
 import matplotlib.pyplot as plt
-plt.rcParams['font.sans-serif'] = ['SimHei']
 from dgl.data import citation_graph as citegrh
 from sklearn.manifold import Isomap
 from sklearn.grid_search import GridSearchCV
-from utils.data import draw_part_graph, print_graph_info, cut_graph, load_data_default, erase_features
+from utils.data import draw_part_graph, print_graph_info, cut_graph, load_data_default, erase_features, draw
 from utils.save import generate_path
 from dgl import DGLGraph
 import numpy as np
@@ -136,18 +135,53 @@ import dgl.function as fn
 # ls = [3, 4, 5, 8, 9]
 # with open('result/train_result/result.txt', 'a') as f:
 #     f.write(str(ls)+'\n')
-x = np.arange(1, 11, 1)
-y1 = x
-y2 = x * 2
-y3 = x * 3
-y4 = x * 4
+# x = np.arange(2, 11)
+# y1 = x
+# y2 = x * 2
+# y3 = x * 3
+# y4 = x * 4
+#
+# plt.title('Pubmed')
+# plt.xlabel('Number of Layers')
+# plt.ylabel('Accuracy')
+# plt.xticks(x)
+# plt.xlim(1, 10)
+# # plt.ylim(0, 1)
+# plt.plot(x, y1, color='green', linestyle='-', marker='^', label='train')
+# plt.plot(x, y2, color='green', linestyle=':', marker='^', label='train1')
+# plt.plot(x, y3, color='blue', linestyle='-', marker='o', label='test')
+# plt.plot(x, y4, color='blue', linestyle=':', marker='o', label='test1')
+# plt.legend()
+# plt.show()
+#
+# x = np.arange(1, 17)
+# y1 = x
+# y2 = x * 2
+# y3 = x * 3
+# y4 = x * 4
+#
+# draw("Cora", "WD", y1, y2, y3, y4)
 
-plt.title('示例')
-plt.xlabel('层数')
-plt.ylabel('准确率')
-plt.plot(x, y1, color='green', linestyle='-', marker='o', label='train')
-plt.plot(x, y2, color='green', linestyle=':', marker='o', label='train1')
-plt.plot(x, y3, color='blue', linestyle='-', marker='o', label='test')
-plt.plot(x, y4, color='blue', linestyle=':', marker='o', label='test1')
-plt.legend()
-plt.show()
+# title = 'Pubmed'
+# method = 'WD'
+# train_accs0 = [64.94, 90.81, 88.81, 87.84, 87.3, 87.09, 86.54, 86.24, 85.55, 85.61, 86.23, 85.63, 85.58, 85.03, 56.97, 48.12]
+# train_accs1 = [76.86, 86.72, 87.67, 87.17, 86.48, 86.17, 85.95, 85.53, 84.13, 85.56, 86.23, 85.63, 84.79, 85.13, 72.93, 76.77]
+# test_accs0 = [63.39, 86.76, 85.45, 85.45, 84.74, 84.74, 84.69, 84.53, 84.63, 84.84, 84.84, 84.13, 84.43, 83.67, 56.9, 47.77]
+# test_accs1 = [75.35, 86.61, 86.21, 85.34, 85.24, 84.79, 84.53, 84.43, 83.72, 84.64, 84.84, 84.13, 84.51, 83.74, 72.46, 76.22]
+# draw(title, method, train_accs0, train_accs1, test_accs0, test_accs1)
+
+# title = 'Pubmed'
+# method = 'DO'
+# train_accs0 = [64.94, 90.81, 88.81, 87.84, 87.3, 87.09, 86.54, 86.24, 85.55, 85.61, 86.23, 85.63, 85.58, 85.03, 56.97, 48.12]
+# train_accs1 = [68.4, 89.79, 87.53, 87.26, 86.45, 86.05, 86.14, 85.47, 84.36, 82.83, 83.68, 72.09, 84.72, 79.59, 84.1, 83.12]
+# test_accs0 = [63.39, 86.76, 85.45, 85.45, 84.74, 84.74, 84.69, 84.53, 84.63, 84.84, 84.84, 84.13, 84.43, 83.67, 56.9, 47.77]
+# test_accs1 = [65.97, 87.22, 85.5, 85.45, 84.74, 84.18, 84.33, 84.23, 83.16, 81.8, 82.56, 70.65, 82.51, 78.77, 82.91, 82.25]
+# draw(title, method, train_accs0, train_accs1, test_accs0, test_accs1)
+
+title = 'Pubmed'
+method = 'ES'
+train_accs1 = [64.94, 90.81, 88.81, 87.84, 87.3, 87.09, 86.54, 86.24, 85.55, 85.61, 86.23, 85.63, 85.58, 85.03, 56.97, 48.12]
+train_accs0 = [64.84, 90.8, 89.81, 89.69, 88.79, 87.47, 86.77, 87.18, 86.07, 86.61, 85.68, 84.88, 58.61, 41.48, 41.9, 41.64]
+test_accs1 = [63.39, 86.76, 85.45, 85.45, 84.74, 84.74, 84.69, 84.53, 84.63, 84.84, 84.84, 84.13, 84.43, 83.67, 56.9, 47.77]
+test_accs0 = [63.13, 86.61, 85.55, 85.55, 85.5, 84.33, 84.03, 84.18, 84.23, 83.77, 83.98, 83.77, 58.37, 41.73, 42.85, 42.24]
+draw(title, method, train_accs0, train_accs1, test_accs0, test_accs1)
