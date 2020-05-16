@@ -6,6 +6,7 @@ import time
 import numpy as np
 import torch.nn.functional as F
 import torch as th
+import torch.nn as nn
 
 
 def train_net(num_epoch, model, optimizer, early_stopping, g, features, labels, train_mask, val_mask):
@@ -24,6 +25,7 @@ def train_net(num_epoch, model, optimizer, early_stopping, g, features, labels, 
 
         optimizer.zero_grad()
         loss.backward()
+        nn.utils.clip_grad_norm(model.parameters(), max_norm=1)
         optimizer.step()
 
         if epoch >= 3:
