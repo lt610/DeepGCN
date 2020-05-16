@@ -25,7 +25,9 @@ def train_net(num_epoch, model, optimizer, early_stopping, g, features, labels, 
 
         optimizer.zero_grad()
         loss.backward()
-        nn.utils.clip_grad_norm(model.parameters(), max_norm=1)
+
+        # nn.utils.clip_grad_norm(model.parameters(), max_norm=5)
+
         optimizer.step()
 
         if epoch >= 3:
