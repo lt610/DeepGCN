@@ -90,12 +90,12 @@ def train2():
     dataset_name = ['chameleon']
     model_name = ['ResGCNNet']
     num_hidden = [128]
-    layers = [i for i in range(1, 16)]
+    layers = [i for i in range(16, 17)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
     model_params['graph_norm'] = True
-    model_params['batch_norm'] = True
+    model_params['batch_norm'] = False
     model_params['pair_norm'] = False
     model_params['residual'] = False
 
