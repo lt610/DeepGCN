@@ -87,10 +87,10 @@ def train2():
     data_params = {}
     model_params = {}
     # dataset_name = ['cora', 'citeseer', 'pubmed']
-    dataset_name = ['cora', 'citeseer']
+    dataset_name = ['chameleon']
     model_name = ['ResGCNNet']
     num_hidden = [128]
-    layers = [i for i in range(1, 24)]
+    layers = [i for i in range(1, 16)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
