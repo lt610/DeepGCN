@@ -86,11 +86,13 @@ def train2():
     set_seed(42)
     data_params = {}
     model_params = {}
+    dataset_name = ['cora', 'citeseer', 'pubmed', 'chameleon',
+                    'squirrel', 'film', 'cornell', 'texas', 'wisconsin']
     # dataset_name = ['cora', 'citeseer', 'pubmed']
-    dataset_name = ['chameleon']
-    model_name = ['ResGCNNet']
+    # dataset_name = ['wisconsin']
+    model_name = ['SGCLayer']
     num_hidden = [128]
-    layers = [i for i in range(16, 17)]
+    layers = [i for i in range(1, 9)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
@@ -108,6 +110,11 @@ def train2():
 
     params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, cutgraph,
                                learn_rate, weight_decay, alpha)
+
+    # space = [0]
+    # params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, space, cutgraph,
+    #                            learn_rate, weight_decay, alpha)
+
     pre_dataset = ''
     train_losses = []
     train_acces = []
@@ -119,6 +126,16 @@ def train2():
             model_params['cutgraph'], model_params['learn_rate'], model_params['weight_decay'] = param[0],\
             param[1], param[2], param[3], param[4], param[5], param[6], param[7], param[8]
         model_params['alpha'] = param[9]
+
+        # model_params['dataset_name'], model_params['model_name'], model_params['num_hidden'],\
+        #     model_params['layers'], model_params['dropout'], model_params['dropedge'],\
+        #     model_params['cutgraph'], model_params['learn_rate'], model_params['weight_decay'] = param[0],\
+        #     param[1], param[2], param[3], param[4], param[5], param[6], param[7], param[8]
+        # model_params['alpha'] = param[9]
+        #
+        # n = dataset_name.index(model_params['dataset_name'])
+        # model_params['dropedge'] = dropedge[n]
+
         if model_params['dataset_name'] != pre_dataset:
             pre_dataset = model_params['dataset_name']
             # data = citegrh.load_cora()
@@ -174,10 +191,10 @@ def train2():
             acces1.append(test_acc)
         # print(losses1)
         # print(acces1)
-        train_loss = np.min(train_losses1)
-        train_acc = np.max(train_acces1)
-        loss = np.min(losses1)
-        acc = np.max(acces1)
+        train_loss = np.mean(train_losses1)
+        train_acc = np.mean(train_acces1)
+        loss = np.mean(losses1)
+        acc = np.mean(acces1)
         train_losses.append(round(train_loss, 2))
         train_acces.append(round(train_acc * 100, 2))
         losses.append(round(loss, 2))
@@ -189,6 +206,35 @@ def train2():
 
     with open('result/train_result/result.txt', 'a') as f:
         f.write('train_acc:{}\n'.format(train_acces) + 'test_acc:{}\n'.format(acces))
+    # search_value(dropedge, len(dataset_name), acces)
+    handle_result(len(layers), len(dataset_name), acces)
+
+
+def handle_result(layers, ndataset, result):
+    lists = []
+    for i in range(0, ndataset):
+        lists.append(result[i*layers:(i+1)*layers])
+    bests = []
+    for t in lists:
+        best = max(t)
+        layer = t.index(best) + 1
+        bests.append('{}({})'.format(best, layer))
+    print(bests)
+    with open('result/train_result/result.txt', 'a') as f:
+        f.write('9 datasets:{}\n'.format(bests))
+
+
+def search_value(values, ndataset, result):
+    n = len(values)
+    lists = []
+    for i in range(0, ndataset):
+        lists.append(result[i*n:(i+1)*n])
+    r = []
+    for t in lists:
+        best = max(t)
+        i = t.index(best)
+        r.append(values[i])
+    print(r)
 
 
 if __name__ == '__main__':
