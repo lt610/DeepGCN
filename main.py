@@ -87,10 +87,10 @@ def train2():
     data_params = {}
     model_params = {}
     # dataset_name = ['cora', 'citeseer', 'pubmed']
-    dataset_name = ['citeseer']
+    dataset_name = ['cora', 'citeseer']
     model_name = ['ResGCNNet']
     num_hidden = [128]
-    layers = [i for i in range(20, 21)]
+    layers = [i for i in range(1, 24)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
@@ -104,7 +104,7 @@ def train2():
     cutgraph = [0]
     alpha = [0.8]
     learn_rate = [1e-2]
-    weight_decay = [1e-2]
+    weight_decay = [0]
 
     params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, cutgraph,
                                learn_rate, weight_decay, alpha)
@@ -166,7 +166,7 @@ def train2():
         train_acces1 = []
         losses1 = []
         acces1 = []
-        for i in range(1):
+        for i in range(2):
             train_loss, train_acc, test_loss, test_acc = train1(data_params, model_params)
             train_losses1.append(train_loss)
             train_acces1.append(train_acc)
