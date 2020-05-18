@@ -7,8 +7,10 @@ class ResGCNNet(nn.Module):
     def __init__(self, num_feats, num_classes, num_hidden, num_layers, bias=False, activation=F.tanh, graph_norm=False,
                  batch_norm=False, pair_norm=False, residual=False, dropout=0, dropedge=0, cutgraph=0, init_beta=1., learn_beta=True):
         super(ResGCNNet, self).__init__()
+
         self.num_layers = num_layers
         self.layers = nn.ModuleList()
+        #self_gcn在最后加了一个参数，记得删掉
         for i in range(0, num_layers):
             if i == 0:
                 self.layers.append(
@@ -22,6 +24,9 @@ class ResGCNNet(nn.Module):
 
     def forward(self, g, features):
         x = None
+        #self_gcn
+        # g.ndata['initial'] = features
+
         for i, layer in enumerate(self.layers):
             if i == 0:
                 x = layer(g, features)

@@ -52,7 +52,7 @@ def train1(data_params, model_params):
         model = ResGCNNet(num_feats, num_classes, num_hidden, layers, bias=bias, activation=activation,
                           graph_norm=graph_norm, batch_norm=batch_norm, pair_norm=pair_norm,
                           residual=residual, dropout=dropout, dropedge=dropedge, cutgraph=cutgraph,
-                          init_beta=1., learn_beta=False)
+                          init_beta=alpha, learn_beta=False)
     if model_name == 'DenseGCNNet':
         model = DenseGCNNet(num_feats, num_classes, num_hidden, layers, bias=bias, activation=activation,
                             graph_norm=graph_norm, batch_norm=batch_norm, dropout=dropout)
@@ -86,25 +86,25 @@ def train2():
     set_seed(42)
     data_params = {}
     model_params = {}
-    dataset_name = ['cora', 'citeseer', 'pubmed', 'chameleon',
-                    'squirrel', 'film', 'cornell', 'texas', 'wisconsin']
-    # dataset_name = ['cora', 'citeseer', 'pubmed']
-    # dataset_name = ['texas', 'wisconsin']
-    model_name = ['ResGCNNet']
+    # dataset_name = ['cora', 'citeseer', 'pubmed', 'chameleon',
+    #                 'squirrel', 'film', 'cornell', 'texas', 'wisconsin']
+    dataset_name = ['chameleon']
+    # dataset_name = ['cornell', 'wisconsin']
+    model_name = ['SGCLayer']
     num_hidden = [128]
-    layers = [i for i in range(1, 9)]
+    layers = [i for i in range(50, 51)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
     model_params['graph_norm'] = True
     model_params['batch_norm'] = False
     model_params['pair_norm'] = False
-    model_params['residual'] = True
+    model_params['residual'] = False
 
     dropout = [0]
     dropedge = [0]
     cutgraph = [0]
-    alpha = [0.8]
+    alpha = [1.0]
     learn_rate = [1e-2]
     weight_decay = [0]
 
@@ -112,8 +112,8 @@ def train2():
                                learn_rate, weight_decay, alpha)
 
     # space = [0]
-    # params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, space,
-    #                            learn_rate, weight_decay, alpha)
+    # params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, cutgraph,
+    #                            learn_rate, weight_decay, space)
 
     pre_dataset = ''
     train_losses = []
@@ -132,9 +132,9 @@ def train2():
         #     model_params['cutgraph'], model_params['learn_rate'], model_params['weight_decay'] = param[0],\
         #     param[1], param[2], param[3], param[4], param[5], param[6], param[7], param[8]
         # model_params['alpha'] = param[9]
-
+        #
         # n = dataset_name.index(model_params['dataset_name'])
-        # model_params['cutgraph'] = cutgraph[n]
+        # model_params['alpha'] = alpha[n]
 
         if model_params['dataset_name'] != pre_dataset:
             pre_dataset = model_params['dataset_name']
@@ -207,8 +207,8 @@ def train2():
 
     with open('result/train_result/result.txt', 'a') as f:
         f.write('train_acc:{}\n'.format(train_acces) + 'test_acc:{}\n'.format(acces))
-    # search_value(dropedge, len(dataset_name), acces)
-    handle_result(len(layers), len(dataset_name), acces)
+    # search_value(alpha, len(dataset_name), acces)
+    # handle_result(len(layers), len(dataset_name), acces)
 
 
 def handle_result(layers, ndataset, result):

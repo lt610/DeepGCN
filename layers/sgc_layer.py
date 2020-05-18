@@ -76,16 +76,16 @@ class SGCLayer(nn.Module):
                 # w = edge_softmax(g, cos)
 
                 g.edata['w'] = w
-                # if self.graph_norm:
-                #     features = features * norm
+                if self.graph_norm:
+                    features = features * norm
 
                 g.ndata['h'] = features
                 g.update_all(fn.u_mul_e('h', 'w', 'm'),
                              fn.sum('m', 'h'))
                 features = g.ndata.pop('h')
 
-                # if self.graph_norm:
-                #     features = features * norm
+                if self.graph_norm:
+                    features = features * norm
 
                 if self.pair_norm:
                     self.pn(features)

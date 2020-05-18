@@ -50,7 +50,7 @@ class NodeApplyModule(nn.Module):
 
 class GCNLayer(nn.Module):
     def __init__(self, in_dim, out_dim, bias=False, activation=None, graph_norm=False,
-                 batch_norm=False, pair_norm=False, residual=False, dropout=0, dropedge=0, cutgraph=0, init_beta=1., learn_beta=True):
+                 batch_norm=False, pair_norm=False, residual=False, dropout=0, dropedge=0, cutgraph=0, init_beta=1., learn_beta=False):
         super(GCNLayer, self).__init__()
         self.apply_mod = NodeApplyModule(in_dim, out_dim, bias)
         self.activation = activation
@@ -62,6 +62,11 @@ class GCNLayer(nn.Module):
             self.bn = nn.BatchNorm1d(out_dim)
         if pair_norm:
             self.pn = PairNorm(mode='PN-SCS', scale=1)
+        # #self_gcn
+        # if True:
+        #     self.register_buffer('beta', th.Tensor([init_beta]))
+        #     self.self_fc = nn.Linear(t, out_dim, bias)
+
         if residual:
             if learn_beta:
                 self.beta = nn.Parameter(th.Tensor([init_beta]))
@@ -82,6 +87,11 @@ class GCNLayer(nn.Module):
     def reset_parameters(self):
         gain = cal_gain(self.activation)
         nn.init.xavier_normal_(self.apply_mod.linear.weight, gain=gain)
+
+        # #self_gcn
+        # if isinstance(self.self_fc, nn.Linear):
+        #     nn.init.xavier_normal_(self.self_fc.weight, gain=gain)
+
         if isinstance(self.res_fc, nn.Linear):
             nn.init.xavier_normal_(self.res_fc.weight, gain=gain)
 
@@ -121,6 +131,11 @@ class GCNLayer(nn.Module):
             h = self.bn(h)
         if self.pair_norm:
             h = self.pn(h)
+
+        #  #self_gcn
+        # if True:
+        #     h = (1-self.beta) * h +self.beta * self.self_fc(g.ndata['initial'])
+
         if self.activation is not None:
             h = self.activation(h)
         if self.res_fc is not None:
