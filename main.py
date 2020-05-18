@@ -72,7 +72,7 @@ def train1(data_params, model_params):
                            init_beta=1., learn_beta=False,
                            batch_norm=batch_norm, residual=residual, dropout=dropout, cutgraph=cutgraph)
     print(model)
-    early_stopping = EarlyStopping(50, file_name="Try")
+    early_stopping = EarlyStopping(30, file_name="Try")
     optimizer = th.optim.Adam(model.parameters(), lr=learn_rate, weight_decay=weight_decay)
     num_epoch = 400
     model = model.to(device)
@@ -88,22 +88,22 @@ def train2():
     model_params = {}
     # dataset_name = ['cora', 'citeseer', 'pubmed', 'chameleon',
     #                 'squirrel', 'film', 'cornell', 'texas', 'wisconsin']
-    dataset_name = ['chameleon']
+    dataset_name = ['pubmed']
     # dataset_name = ['cornell', 'wisconsin']
-    model_name = ['SGCLayer']
+    model_name = ['ResGCNNet']
     num_hidden = [128]
-    layers = [i for i in range(50, 51)]
+    layers = [i for i in range(1, 17)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
     model_params['graph_norm'] = True
     model_params['batch_norm'] = False
     model_params['pair_norm'] = False
-    model_params['residual'] = False
+    model_params['residual'] = True
 
     dropout = [0]
     dropedge = [0]
-    cutgraph = [0]
+    cutgraph = [0.2]
     alpha = [1.0]
     learn_rate = [1e-2]
     weight_decay = [0]
@@ -193,9 +193,9 @@ def train2():
         # print(losses1)
         # print(acces1)
         train_loss = np.mean(train_losses1)
-        train_acc = np.mean(train_acces1)
+        train_acc = np.max(train_acces1)
         loss = np.mean(losses1)
-        acc = np.mean(acces1)
+        acc = np.max(acces1)
         train_losses.append(round(train_loss, 2))
         train_acces.append(round(train_acc * 100, 2))
         losses.append(round(loss, 2))
