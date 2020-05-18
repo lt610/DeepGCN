@@ -11,19 +11,24 @@ class ResAGNNNet(nn.Module):
         self.layers = nn.ModuleList()
         if not project:
             num_hidden = num_feats
-        for i in range(0, num_layers):
-            if i == 0:
-                self.layers.append(
-                    AGNNLayer(num_feats, num_hidden, project, bias, activation, init_beta, learn_beta, batch_norm,
-                              residual, dropout, cutgraph))
-            elif i == num_layers - 1:
-                self.layers.append(
-                    AGNNLayer(num_hidden, num_classes, True, bias, None, init_beta, learn_beta, batch_norm,
-                              residual, dropout, cutgraph))
-            else:
-                self.layers.append(
-                    AGNNLayer(num_hidden, num_hidden, project, bias, activation, init_beta, learn_beta, batch_norm,
-                              residual, dropout, cutgraph))
+        if num_layers == 1:
+            self.layers.append(
+                AGNNLayer(num_feats, num_classes, True, bias, None, init_beta, learn_beta, batch_norm,
+                          residual, dropout, cutgraph))
+        else:
+            for i in range(0, num_layers):
+                if i == 0:
+                    self.layers.append(
+                        AGNNLayer(num_feats, num_hidden, project, bias, activation, init_beta, learn_beta, batch_norm,
+                                  residual, dropout, cutgraph))
+                elif i == num_layers - 1:
+                    self.layers.append(
+                        AGNNLayer(num_hidden, num_classes, True, bias, None, init_beta, learn_beta, batch_norm,
+                                  residual, dropout, cutgraph))
+                else:
+                    self.layers.append(
+                        AGNNLayer(num_hidden, num_hidden, project, bias, activation, init_beta, learn_beta, batch_norm,
+                                  residual, dropout, cutgraph))
 
     def forward(self, g, features):
         x = None

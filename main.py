@@ -89,8 +89,8 @@ def train2():
     dataset_name = ['cora', 'citeseer', 'pubmed', 'chameleon',
                     'squirrel', 'film', 'cornell', 'texas', 'wisconsin']
     # dataset_name = ['cora', 'citeseer', 'pubmed']
-    # dataset_name = ['wisconsin']
-    model_name = ['SGCLayer']
+    # dataset_name = ['texas', 'wisconsin']
+    model_name = ['ResGCNNet']
     num_hidden = [128]
     layers = [i for i in range(1, 9)]
 
@@ -99,7 +99,7 @@ def train2():
     model_params['graph_norm'] = True
     model_params['batch_norm'] = False
     model_params['pair_norm'] = False
-    model_params['residual'] = False
+    model_params['residual'] = True
 
     dropout = [0]
     dropedge = [0]
@@ -112,7 +112,7 @@ def train2():
                                learn_rate, weight_decay, alpha)
 
     # space = [0]
-    # params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, space, cutgraph,
+    # params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, space,
     #                            learn_rate, weight_decay, alpha)
 
     pre_dataset = ''
@@ -132,9 +132,9 @@ def train2():
         #     model_params['cutgraph'], model_params['learn_rate'], model_params['weight_decay'] = param[0],\
         #     param[1], param[2], param[3], param[4], param[5], param[6], param[7], param[8]
         # model_params['alpha'] = param[9]
-        #
+
         # n = dataset_name.index(model_params['dataset_name'])
-        # model_params['dropedge'] = dropedge[n]
+        # model_params['cutgraph'] = cutgraph[n]
 
         if model_params['dataset_name'] != pre_dataset:
             pre_dataset = model_params['dataset_name']
@@ -148,6 +148,7 @@ def train2():
             g, features, labels, train_mask, val_mask, test_mask, num_feats,\
                 num_classes = load_data_from_file(model_params['dataset_name'], None, 0.6, 0.2)
             # train_mask, val_mask, test_mask = stratified_sampling_mask(labels, num_classes, 0.6, 0.2, random_seed=42)
+            print_graph_info(g)
 
             # print_graph_info(g)
             # g = cut_graph(g, labels, num_classes)

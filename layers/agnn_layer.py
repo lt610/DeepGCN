@@ -63,6 +63,7 @@ class AGNNLayer(nn.Module):
             e[indices] = 0
 
         g.edata['p'] = edge_softmax(g, e)
+
         g.update_all(fn.u_mul_e('h', 'p', 'm'), fn.sum('m', 'h'))
         h = g.ndata['h']
         if self.project:

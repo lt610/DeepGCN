@@ -4,7 +4,7 @@ import dgl.function as fn
 from torch.nn import functional as F
 import numpy as np
 from layers.pair_norm import PairNorm
-
+from dgl.nn.pytorch import edge_softmax
 
 class SGCLayer(nn.Module):
     def __init__(self, in_feats, out_feats, k=1, cached=False, bias=False, graph_norm=False, pair_norm=False, dropedge=0, cutgraph=0):
@@ -68,16 +68,25 @@ class SGCLayer(nn.Module):
                         # indices = shuffled_indices[int(edges.size()[0] * self.graph_cut)-1]
                         # cut_indices = edges[indices]
 
-                        w[cut_indices] = 1e-5
+                        w[cut_indices] = 0
+
+                # g.ndata['norm_h'] = F.normalize(features, p=2, dim=-1)
+                # g.apply_edges(fn.u_dot_v('norm_h', 'norm_h', 'cos'))
+                # cos = g.edata.pop('cos')
+                # w = edge_softmax(g, cos)
+
                 g.edata['w'] = w
-                if self.graph_norm:
-                    features = features * norm
+                # if self.graph_norm:
+                #     features = features * norm
+
                 g.ndata['h'] = features
                 g.update_all(fn.u_mul_e('h', 'w', 'm'),
                              fn.sum('m', 'h'))
                 features = g.ndata.pop('h')
-                if self.graph_norm:
-                    features = features * norm
+
+                # if self.graph_norm:
+                #     features = features * norm
+
                 if self.pair_norm:
                     self.pn(features)
 
