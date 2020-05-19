@@ -90,20 +90,20 @@ def train2():
     #                 'squirrel', 'film', 'cornell', 'texas', 'wisconsin']
     dataset_name = ['pubmed']
     # dataset_name = ['cornell', 'wisconsin']
-    model_name = ['ResGCNNet']
+    model_name = ['SGCLayer']
     num_hidden = [128]
-    layers = [i for i in range(1, 17)]
+    layers = [i for i in range(1, 33)]
 
     model_params['bias'] = False
     model_params['activation'] = F.tanh
     model_params['graph_norm'] = True
-    model_params['batch_norm'] = False
+    model_params['batch_norm'] = True
     model_params['pair_norm'] = False
-    model_params['residual'] = True
+    model_params['residual'] = False
 
     dropout = [0]
     dropedge = [0]
-    cutgraph = [0.2]
+    cutgraph = [0]
     alpha = [1.0]
     learn_rate = [1e-2]
     weight_decay = [0]
@@ -112,7 +112,7 @@ def train2():
                                learn_rate, weight_decay, alpha)
 
     # space = [0]
-    # params = itertools.product(dataset_name, model_name, num_hidden, layers, dropout, dropedge, cutgraph,
+    # params = itertools.product(dataset_vname, model_name, num_hidden, layers, dropout, dropedge, cutgraph,
     #                            learn_rate, weight_decay, space)
 
     pre_dataset = ''
@@ -151,10 +151,10 @@ def train2():
             print_graph_info(g)
 
             # print_graph_info(g)
-            # g = cut_graph(g, labels, num_classes)
-            # g = g.to_networkx()
-            # g = DGLGraph(g)
-            # print_graph_info(g)
+            g = cut_graph(g, labels, num_classes)
+            g = g.to_networkx()
+            g = DGLGraph(g)
+            print_graph_info(g)
 
             erase_features(features, val_mask, test_mask, p=0)
 
@@ -193,9 +193,9 @@ def train2():
         # print(losses1)
         # print(acces1)
         train_loss = np.mean(train_losses1)
-        train_acc = np.max(train_acces1)
+        train_acc = np.mean(train_acces1)
         loss = np.mean(losses1)
-        acc = np.max(acces1)
+        acc = np.mean(acces1)
         train_losses.append(round(train_loss, 2))
         train_acces.append(round(train_acc * 100, 2))
         losses.append(round(loss, 2))
