@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="">
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <title>PaperPass_检测报告</title>
+    <link rel="shortcut icon" href="htmls/images/favicon.ico">
+    <link rel="stylesheet" href="htmls/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="htmls/css/iframe.min.css"/>
+    <style type="text/css">
+        html,body{overflow: hidden;}
+        .alert-warning{position: fixed;top:0; width: 100%;height: 30px;line-height: 30px;text-align: center; background: #f00;color: #fff;z-index: 10000;}
+    </style>
+
+</head>
+<body class="">
+<noscript>
+    <div class="alert-warning">
+        <p>您当前的浏览器的安全设置导致脚本被禁用！请<b>更换浏览器</b>。</p>
+    </div>
+</noscript>
+<div id="m-header">
+    <!-- 详情报告目录 -->
+    <div class="layui-nav bookmark">
+        <div class="layui-nav-child layui-bg-white mlayui-nav-child" >
+            <!-- title -->
+            <div class="lauyui_tit">
+                <div class="lauyui_tit_left">
+                    <div class="tit_left">书签</div>
+                    <div class="mclick_show Pointer">
+                        <span style="margin-right:2px">[</span>
+                        <span class="mclick_span">全部展开</span>
+                        <i class="g-arrow-i"></i>
+                        <span style="margin-left:12px">]</span>
+                    </div>
+                </div>
+                <div class="m_close Pointer">
+                    <span class="layui-layer-setwin">
+                        <a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a>
+                    </span>
+                </div>
+            </div>
+            <div class="overflow_ul" id="detail_report">
+            </div>
+        </div>
+    </div>
+    <!-- 查看原文目录 -->
+    <div class="layui-nav bookmark1">
+        <div class="layui-nav-child layui-bg-white bookmark1_layui-nav-child" >
+            <!-- title -->
+            <div class="lauyui_tit">
+                <div class="lauyui_tit_left">
+                    <div class="tit_left">书签</div>
+                    <div class="mclick_show Pointer">
+                        <span style="margin-right:2px">[</span>
+                        <span class="mclick_span">全部展开</span>
+                        <i class="g-arrow-i"></i>
+                        <span style="margin-left:12px">]</span>
+                    </div>
+                </div>
+                <div class="m_close Pointer">
+                    <span class="layui-layer-setwin">
+                        <a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a>
+                    </span>
+                </div>
+            </div>
+            <div class="overflow_ul" id="original_report">
+            </div>
+        </div>
+    </div>
+    <div class="paper-header">
+        <div class="header-nav">
+            <a href="" class="nav-logo pull-left">
+                <img src="htmls/images/logo.png">
+                <p class="g-font-color green text-right g-font-s16">旗舰版</p>
+            </a>
+            <div class="nav-tit pull-left">
+                <h4>基于深度图卷积网络的结点分类算法的研究与实现</h4>
+                论文作者：<span class="MR10">刘唐</span>
+                
+                提交时间：<span class="submitTime">2020-5-20 13:54:34</span></li>
+            </div>
+            <div class="nav-detail pull-right">
+                <ul class="nav-detail-info pull-left">
+                    <li>论文字数：<span class="paperNum">39600</span></li>
+                    <li>段落个数：<span class="sectionNum">1042</span></li>
+                    <li>句子个数：<span class="sentenceNum">1697</span></li>
+                </ul>
+                <div class="nav-detail-similar pull-left">
+                    总体相似度
+                    <p class="text-right">
+                        <span class="similarNum">9%</span>
+                    </p>
+                    <span class="progress"><span class="progress-bar green" style="width: 9%;"></span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="nav" id="m-nav">
+    <div style="display: flex;">
+        <div><img src="" class="tab_img" style="margin-top: -2px;"></div>
+        <ul class="tab pull-left clearfix" tab-a="ul">
+        <li class="active active_li">
+        <a href="htmls/detail_report.html" target="main">详细报告</a>
+            <span class="grey-spacer"></span>
+        </li>
+        <li  class="active_li">
+        <a href="htmls/comprehensive_assessment.html" target="main">综合评估</a>
+            <span class="grey-spacer"></span>
+        </li>
+                <li  class="active_li">
+            <a href="htmls/view_original_edit.html" target="main">修改文档</a>
+            <span class="grey-spacer"></span>
+        </li>
+                <li  class="active_li">
+            <a href="htmls/word/word_original.html" target="main">查看原文</a>
+            <span class="grey-spacer"></span>
+        </li>
+        <li>
+            <a href="简明报告PDF打印版.pdf" target="_blank">打印PDF</a>
+            <span class="grey-spacer"></span>
+        </li>
+        <li  class="active_li">
+            <a href="htmls/help.html" target="main">使用帮助</a>
+
+        </li>
+    </ul>
+    </div>
+    <div class="HeaderButton">
+        <div class="clicktxt">收起</div>
+        <div class="clickimg"></div>
+    </div>
+    <div class="report_number">
+    <p class="g-font-color green">
+            报告编号：
+            <span>5EC4C61AA236C0TF3</span>
+        <a type="button" class="g-btn g-btn-default g-btn-sm transparent ML15" style="margin-top:-4px;" href="http://www.paperpass.com/check/5EC4C61AA236C0TF3" target="_blank">查询真伪</a>
+        </p>
+    </div>
+</div>
+<div id="m-content" class="clearfix over-h MT10">
+    <iframe src="htmls/detail_report.html" name="main" scrolling="no" frameborder="0" id="childIframe"></iframe>
+</div>
+
+</body>
+<script type="text/javascript" src="htmls/js/jquery.min.js"></script>
+<script type="text/javascript" src="htmls/js/Lib.js"></script>
+<script type="text/javascript" src="htmls/js/detaildata.js"></script>
+<script type="text/javascript" src="htmls/js/originaldata.js"></script>
+<script type="text/javascript" src="htmls/js/top.js"></script>
+<script type="text/javascript">
+    Report.report_id = '5ec4c61aa236c0tf3';
+</script>
+<script type="text/javascript">
+    (function(System,$){
+        'use strict';
+        // 以id为key将文档的默认操作记录到缓存中
+        System.operateState.saveId(Report.report_id)
+
+        var tab = System.Paper.tab();
+        var run = System.Paper.setMainIframeHeight();
+        $(function(){
+            try {
+                if ("undefined" === typeof localStorage || "undefined" === typeof JSON) {
+                    $('body').append('<div class="alert-warning"><p>您当前的浏览器不支持段落修改功能，如需使用此功能请<b>更换其它浏览器</b>！</p></div>');
+                }
+            } catch (e){
+                $('body').append('<div class="alert-warning"><p>您当前的浏览器不支持段落修改功能，如需使用此功能请<b>更换其它浏览器</b>！</p></div>');
+            }
+            $(document).on('click','[tab-a="ul"] .active_li',function(){
+                tab.call(this);
+            });
+            $(window).resize(function(){
+                run();
+            }).trigger('resize');
+        });
+    })(Report,jQuery);
+
+
+
+
+</script>
+</html>

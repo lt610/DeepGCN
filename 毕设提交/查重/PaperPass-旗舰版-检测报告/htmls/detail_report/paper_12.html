@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>PaperPass 权威论文抄袭检测系统</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+<div class="layui-layer-shade" id="layui-layer-shade11" times="11"
+     style="z-index: 19891024; background-color: rgb(0, 0, 0); opacity: 0.3;"></div>
+<div class="layui-layer layui-layer-page layui-layer-prompt" id="layui-layer11" type="page" times="11" showtime="0"
+     contype="string" style="z-index: 19891025; top: 259px; left: 337.5px;">
+    <div class="layui-layer-title" style="cursor: move;color:#e6e6e6;background:#343544">切换模式</div>
+    <div id="" class="layui-layer-content" style="font-size:24px">确认切换至“Word模式”吗？</div><span
+        class="layui-layer-setwin"><a class="layui-layer-ico layui-layer-close layui-layer-close1"
+                                      href="javascript:;"></a></span>
+    <div class="layui-layer-btn layui-layer-btn-" style="text-align: center">
+        <a class="layui-layer-btn0 text_btn" href="../word/word_report.html" >确定</a><a
+            class="layui-layer-btn1">取消</a></div>
+</div>
+<div>
+    <div class="text-center PT30">
+                <div class="change_word">
+            <div class="change_wordtip">切换模式</div>
+    </div>
+                <ul class="pagination"><li><a href="paper_1.html"><span>首页</span></a></li>
+    <li><a href="paper_11.html"><span>上一页</span></a></li>
+    <li><a href="paper_13.html"><span>下一页</span></a></li>
+    <li><a href="paper_17.html"><span>尾页</span></a></li></ul>
+    <div class="ML15 inline-block v-top MT10" style="padding-top: 10px;">
+            页码
+            <span class="g-font-color green">12</span>/<span>17</span>
+            页
+        </div>        <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm addLine" style="margin-left: 45px;">使用辅助线</button>
+    </div>
+    <div class="paper-txt P30 PB0">
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="692">692</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Pubmed</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="693">693</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">GCN</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="694">694</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">86.41</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="695">695</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">85.8</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="696">696</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">83.37</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="697">697</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">54.87</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="698">698</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">GCN(BN)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="699">699</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">87.73</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="700">700</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">85.45</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="701">701</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">83.92</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="702">702</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">83.57</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="703">703</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">5.6 本章小结</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="704">704</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">本章首先介绍了梯度消失/爆炸问题的具体含义，接着介绍了三种常用的缓解该问题的方法：</span> <span class="g-font-color green">Xavier初始化，梯度修剪和批量归一化，并在GCN上做了一些实验。</span> <span class="g-font-color green">实验表明，梯度消失/爆炸也是限制GCN加深的一个因素，传统的几种方法可以缓解该问题。</span> <span class="g-font-color green">但是当层数增加到一定程度时，GCN性能仍然会骤降，限制GCN加深的主要因素不是梯度消失/爆炸问题。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="705">705</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green"></span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="706">706</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">第6章  面向过光滑的方法</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="707">707</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">过光滑是限制图卷积神经网络加深的特有问题，本章首先对该问题进行了理论分析，</span> <span class="g-font-color green">接着设计了实验对理论进行验证，然后从四个角度提出了缓解方法：</span> <span class="g-font-color green">基于图数据预处理的方法、基于控制邻居权重的方法、基于平衡局部全局的方法和基于增强自身特征的方法，最后在9个数据集上进行了实验。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="708">708</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">6.1  问题定义</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="709">709</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">GCN可以分为两个步骤。</span> <span class="g-font-color green">首先对结点特征进行图卷积操作，接着再进行一次线性变换操作，其中图卷积是性能提升的关键。</span><a href='../sentence_detail/1143.html' target='right' class='g-font-color orange'>我们定义结点特征的每个通道的拉普拉斯平滑见公式（6.1）。</a>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="710">710</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">yi=1-γxi+γjaijdixj#6.1</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="711">711</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">其中aij是添加了自循环的邻接矩阵A=A+I的分量，0&lt;γ&lt;1是平衡结点自身特征和邻居特征的权重参数。</span> <span class="g-font-color green">我们可以将公式（6.1）写成矩阵形式，见公式（6.2）。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="712">712</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Y=X-γD-1LX=I-γD-1LX#6.2</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="713">713</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">这里L=D-A，D-1L是归一化拉普拉斯矩阵。</span> <span class="g-font-color green">假设不使用自身特征，令γ=1，则Y=D-1AX，我们得到拉普拉斯平滑的标准形式。</span><a href='../sentence_detail/1150.html' target='right' class='g-font-color orange'>如果用对称归一化拉普拉斯矩阵代替归一化拉普拉斯矩阵，我们进一步得到GCN，所以GCN是一种特殊的拉普拉斯平滑，即对称拉普拉斯平滑。</a><a href='../sentence_detail/1151.html' target='right' class='g-font-color orange'>由于邻接矩阵添加了自循环，拉普拉斯平滑仍然包含结点自身特征。</a> <span class="g-font-color green">通过计算自身特征和邻居特征的基于结点度数的加权平均，我们得到结点特征的新的表示。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="714">714</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">连通分量的指示向量的定义见公式（6.3）表述，该指示向量描述结点j是否在分量Ci中。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="715">715</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">1ji=1，vj∈Ci0，vj∉Ci#6.3</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="716">716</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">对于任意的α∈0，1，w∈Rn，我们有关于图卷积的结论[4]，见公式（6.4）-（6.5）表述。</span> <span class="g-font-color green">其中θ1∈Rk，θ2∈Rk。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="717">717</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">limm +∞I-αLrwmw=11，12，…</span> <span class="g-font-color green">，1kθ1#6.4</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="718">718</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">limm +∞I-αLsymmw=D-1211，12，…</span> <span class="g-font-color green">，1kθ2#6.5</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="719">719</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">可以看到，随着归一化拉普拉斯平滑的不断使用，图的每个连通分量内结点的特征会收敛到同一个值。</span> <span class="g-font-color green">对于对称归一化拉普拉斯平滑，该值与结点度数的二分之一次幂成正比。</span> <span class="g-font-color green">如果每个类簇恰好是一个连通分量，那么这将有利于分类任务。</span> <span class="g-font-color green">但是事实上实验用到的图数据集，不同类簇之间是连通的，甚至整张图都是连通的，</span> <span class="g-font-color green">而重复使用拉普拉斯平滑可能会混合不同类簇中的结点特征使得它们难以被区分，</span> <span class="g-font-color green">随着层数增加最终所有结点都收敛到相似的值完全无法区分。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="720">720</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">6.2  实验验证</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="721">721</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">6.2.1  批量归一化验证</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="722">722</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">在第5章中，我们在Pubmed数据集上用批量归一化方法实验了[1，16]层的GCN，实验结果表明GCN的准确率没有发生骤降。</span> <span class="g-font-color green">考虑到批量归一化隐含的数据增强效果，以及引用网络结点间的连接比较稀疏，过光滑问题不是很严重，</span> <span class="g-font-color green">我们又在Chameleon数据集上用批量归一化实验了[1，16]层的GCN，见图6.1。</span> <span class="g-font-color green">该数据集结点间的连接很密集，过光滑问题比较严重。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="723">723</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">图6.1  Chameleon上批量归一化方法的实验结果</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="724">724</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                <a href='../sentence_detail/1174.html' target='right' class='g-font-color orange'>可以看到，即使使用了批量归一化方法，训练集和测试集的准确率也都会在波动中大幅下降。</a> <span class="g-font-color green">此外，该方法还起到了负面作用， 损害了GCN的性能。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="725">725</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">6.2.2  过光滑理论验证</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="726">726</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">过光滑问题是由于重复使用拉普拉斯平滑，不同类簇中的结点特征发生混合而难以区分。</span> <span class="g-font-color green">同一类簇的内部结点倾向于连接比较密集，越往中心连接越密集，而边缘结点连接比较稀疏，不同类簇间连接也比较稀疏。</span> <span class="g-font-color green">当层数较少时混杂的结点也较少，此时性能缓慢下降，当层数到达某一阈值时，平滑范围触及了连接密集区域，混杂的结点骤增，因而性能急剧下降。</span> <span class="g-font-color green">当层数在[1-3]区间时，浅层学习到的结构信息匮乏为主要问题，增加层数可以学习到更多结构信息，因此增加层数可以提高性能。</span> <span class="g-font-color green">我们可以人为地将图数据集按照标签类别分割为几个连通分量，根据对过光滑的分析，</span> <span class="g-font-color green">此时随着层数增加，连通分量内的结点收敛到各自的值，准确率会持续上升直到趋于稳定。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="727">727</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">图6.2  过光滑理论验证</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="728">728</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">为排除过拟合和梯度消失/爆炸问题的混合影响，我们采用SGC模型开展对过光滑问题的研究。</span> <span class="g-font-color green">SGC模型是对GCN模型的简化，它假设GCN层间的非线性不是关键，局部邻居的聚合操作才是关键[21]。</span> <span class="g-font-color green">通过删除层间的非线性激活函数，只保留分类任务中最终的softmax函数，得到的SGC模型见公式（6.6）表述。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="729">729</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Y=softmaxA…</span> <span class="g-font-color green">AAXΘ1Θ2…</span> <span class="g-font-color green">ΘK =softmaxAKXΘ#6.6</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="730">730</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">这里A是添加了自循环的对称归一化邻接矩阵。</span> <span class="g-font-color green">可以看到，SGC模型由两部分组成，一个不含参数的特征提取器X=AKX，一个线性逻辑回归分类器Y=softmax(XΘ)。</span> <span class="g-font-color green">由于SGC只包含一层可学习参数，K表示的是拉普拉斯平滑的次数，K的增加并不会导致过拟合和梯度消失/爆炸问题，</span> <span class="g-font-color green">因此SGC适合用来研究过光滑问题。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="731">731</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">对过光滑理论的验证实验结果见图6.2，其中Cut表示进行了图割处理，即去除了不同类簇间的噪声边。</span><a href='../sentence_detail/1195.html' target='right' class='g-font-color orange'>可以看到，未做图割处理时，在[1，2]层训练集和测试集的准确率上升，</a> <span class="g-font-color green">2层后准确率缓慢下降，8层后准确率开始骤降，随着层数增加最终趋于稳定。</span><a href='../sentence_detail/1197.html' target='right' class='g-font-color orange'>进行图割处理后，训练集和测试集的准确率随着层数的增加持续上升直至趋于稳定。</a><a href='../sentence_detail/1198.html' target='right' class='g-font-color orange'>该实验结果与理论分析完全吻合，充分证实了过光滑的成因分析。</a> <span class="g-font-color green">我们可以根据该分析来提出一些缓解方法。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="732">732</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">6.3  基于图数据预处理的方法</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="733">733</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">根据对过光滑问题的理论分析，只要我们能够去除不同类簇间的噪声边，就能够从根本上解决该问题。</span> <span class="g-font-color green">理想情况下，不同类簇间完全不连通，也就不存在过光滑问题。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="734">734</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">DropEdge通过随机丢弃一定比例的边，在引用数据集上取得了一定的效果。</span> <span class="g-font-color green">被丢弃的边集合中包含了一部分噪声边，因此DropEdge起到了缓解过光滑的作用。</span> <span class="g-font-color green">但是实验表明，在密集连接的Chameleon等数据集上，DropEdge反而会降低GCN的性能。</span> <span class="g-font-color green">这是因为Chameleon等数据集包含大量的噪声边，基于随机性丢弃边会导致同一类簇间的有效边的损失。</span> <span class="g-font-color green">如果我们能够根据某种指标，针对性地丢弃一些边，使得被丢弃的边中包含更多的噪声边，那么就能提升DropEdge的性能。</span> <span class="g-font-color green">我们基于两种假设，分别改进了DropEdge。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="735">735</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">一类是基于结点相似度的改进。</span> <span class="g-font-color green">假设不同类簇间的结点相似度较小，我们可以据此对图数据进行割边，使得更多的噪声边被丢弃。</span> <span class="g-font-color green">我们采用余弦相似度进行计算，并将计算结果进行softmax归一化处理，见公式（6.7）表述。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="736">736</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">a0，j=expcosx0，xjk∈Nv0expcosx0，xk#6.7</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="737">737</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                <a href='../sentence_detail/1213.html' target='right' class='g-font-color orange'>这里N(v0)表示结点v0的邻居集合，a0，j表示注意力权重，描述了结点和邻居的相对重要性。</a> <span class="g-font-color green">我们将边按照注意力权重排序，按照比例α删除权重值较小的边。</span> <span class="g-font-color green">在代码实现中，通过将边的权重置为零进行删边操作。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="738">738</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">另一类是基于结点度数的改进。</span> <span class="g-font-color green">假设不同类簇间的结点连接比较稀疏，我们可以据此对图数据进行割边，使得更多的噪声边被丢弃。</span> <span class="g-font-color green">我们将结点按照度数排序，按照比例α筛选出度数较小的结点，接着在这些结点上按照比例β随机删除边。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+            </div>
+    <div class="text-center PB30">
+        <ul class="pagination"><li><a href="paper_1.html"><span>首页</span></a></li>
+    <li><a href="paper_11.html"><span>上一页</span></a></li>
+    <li><a href="paper_13.html"><span>下一页</span></a></li>
+    <li><a href="paper_17.html"><span>尾页</span></a></li></ul>
+    <div class="ML15 inline-block v-top MT10" style="padding-top: 10px;">
+            页码
+            <span class="g-font-color green">12</span>/<span>17</span>
+            页
+        </div>    </div>
+        <div style="text-align: center;padding-top:30px">
+        <a href="http://www.paperpass.com" target="_blank"><img src="http://file.paperpass.com/images/fabiao.jpg"/></a></div>
+        <div class="paper-footer">
+        <p>检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成</p>
+        <p>Copyright © 2007-2020 PaperPass</p>
+    </div>
+</div>
+</body>
+<script type="text/html" template="section">
+    <div class="text-right">
+        <div class="modifyTxt-notice">
+            修改完本段落之后，点击“临时保存”，之后可在上方导航“修改文档”页面中查看修改后的内容
+        </div>
+        <textarea class="form-control resize-none" rows="4" tpl-section="textarea"></textarea>
+        <div class="button-wrap MT10">
+            <button type="button" class="g-btn g-btn-default g-btn-sm red" tpl-section-cancle="btn">取消保存</button>
+            <button type="button" class="g-btn g-btn-default g-btn-sm" tpl-section-save="btn">临时保存</button>
+        </div>
+    </div>
+</script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/Lib.js"></script>
+<script type="text/javascript" src="../js/left.js"></script>
+<script type="text/javascript">
+    Report.report_id = '5ec4c61aa236c0tf3';
+</script>
+<script type="text/javascript">
+    (function(System,$){
+        var sectionEdit = System.Paper.sectionEdit();
+        var sectionSave = System.Paper.sectionSave(null);
+        $(function(){
+            $(document).on('click','[tpl-section=btn]',function(){
+                sectionEdit.call(this);
+            });
+            $(document).on('click','[tpl-section-save=btn]',function(){
+                sectionSave.call(this);
+
+            });
+            $(document).on('click','[tpl-section-cancle=btn]',function(){
+                var $warp = $(this).closest('[tpl-section="warp"]');
+                $warp.find('[tpl-section="box"]').html('');
+            });
+        });
+        // 切换按钮
+        $('.change_word').mouseover(function (e) {
+            $(".change_wordtip").show();
+        }).mouseout(function () {
+            $(".change_wordtip").hide();
+        }).click(function(){
+            $(".layui-layer-shade").css("display","block");
+            $(".layui-layer").css("display","block");
+        });
+        $(".text_btn").click(function(){
+            parent.postMessage("text_right","*");
+        });
+        //  传值给detail_report
+        parent.postMessage("width_60","*");
+        // 传值给检测报告详细版
+        parent.parent.postMessage("text","*");
+    })(Report,jQuery)
+</script>
+</html>

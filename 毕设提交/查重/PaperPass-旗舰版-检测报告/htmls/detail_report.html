@@ -1,0 +1,64 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/iframe.min.css"/>
+    <title>检测报告-详细报告</title>
+</head>
+<body>
+<div class="PLR40">
+    <div id="m-content" class="clearfix over-h">
+        <div id="m-primary" class="pull-left">
+            <iframe src="word/word_report.html" name="left" scrolling="no" frameborder="0" id="iframeId" class="iframeClass" style="height: 246px;"></iframe>
+        </div>
+        <div id="m-secondary" class="pull-left">
+            <iframe src="right.html" name="right" scrolling="no" frameborder="0" width="100%" id="iframeRight" style="background:#ffffff"></iframe>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/Lib.js"></script>
+<script type="text/javascript">
+    (function(System,$){
+        'use strict';
+        var run = System.Paper.setMainIframeHeight();
+        $(function(){
+            $(window).resize(function(){
+                run();
+            }).trigger('resize');
+        });
+    })(Report,jQuery);
+
+    $(function () {
+        $('#m-primary iframe').attr('src', 'word/word_report.html');
+        $('#m-secondary iframe').attr('src', 'word_right.html');
+        window.addEventListener("message", function( event ) {
+            var iframe = document.getElementById('iframeId');
+            // 接受父页面和子页面的值
+            iframe.contentWindow.postMessage(event.data,'*');
+            if(event.data=="width_70"){
+                $("#m-primary").css("width","70%");
+                $("#m-secondary").css("width","30%");
+            }
+
+            if(event.data=="width_60"){
+                $("#m-primary").css("width","70%");
+                $("#m-secondary").css("width","30%");
+            }
+
+            if(event.data=="word_right"){
+                $('#m-secondary iframe').attr('src', 'right.html');
+            }
+            if(event.data=="text_right"){
+                $('#m-secondary iframe').attr('src', 'word_right.html');
+            }
+    }, false );
+    })
+
+
+
+
+</script>

@@ -1,0 +1,166 @@
+#body {
+	overflow: auto;
+	background: #484f52 !important;
+}
+
+#mbxsgxktna {
+	margin: 5px 0 10px 0;
+}
+.jcjymywwzd {
+	padding: 10px 0 5px 0;
+	margin: auto;
+}
+.upkmzjakmc{
+	box-shadow: #000000 0px 0px 10px;
+	background: #ffffff;
+	display: inline-block;
+	margin: auto !important;
+}
+/* 阴影 */
+.Shadow {
+	height: 10px;
+	box-shadow: inset 0px 12px 8px -12px #000;
+	position: fixed;
+	z-index:999;
+}
+
+/* 页码 */
+.top_Num {
+	position: absolute;
+	top: 30px;
+	opacity: 0.6;
+	color: #ffffff;
+	border-radius: 3px;
+	font-size: 12px;
+	display: none;
+	z-index: 999;
+}
+.partition{
+	margin:0 4px;
+}
+/* 目录 */
+.Fixed {
+	position: fixed !important;
+	top: 15px !important;
+	z-index: 999 !important;
+	right: 32px;
+}
+
+.catalog {
+	background: #323639;
+	width: 40px;
+	height: 285px;
+	border-radius: 3px;
+	box-sizing: border-box;
+	padding: 0 2px !important
+}
+.ori_catalog{
+	height: 245px;
+}
+.toall_div a {
+	color: #ffffff !important;
+	width: 36px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.toall_div {
+	cursor: pointer;
+	width: 36px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	position: relative;
+	margin-bottom: 10px;
+	background: url('../images/image.png');
+	background-repeat: no-repeat;
+}
+
+.tab_icon {
+	width: 36px;
+	height: 20px;
+	text-align: center;
+	background: url('../images/image.png');
+	background-repeat: no-repeat;
+	background-position: -39px -215px;
+}
+
+.Switch {
+	background-position: -66px -76px;
+}
+
+.layui_class {
+	background-position: -66px -119px;
+}
+.subline{
+	background-position:-106px -162px;
+}
+
+
+.red_a{
+    border-bottom: 10px solid #f12828 !important; 
+}
+.orange_a{
+	border-bottom: 10px dashed #f39800 !important;
+}
+.pre_icon {
+	background-position: -32px -79px;
+}
+
+.next_icon {
+	background-position: -32px -122px;
+}
+
+.toall_Num {
+	background-position: -66px -159px;
+}
+
+.tip {
+	position: absolute;
+	right: 40px;
+	color: #000000;
+	width: 60px;
+	height: 30px;
+	background: #f2f2f2;
+	border-radius: 3px;
+	top: 0;
+	display: none;
+	font-size: 12px;
+	z-index: 999;
+}
+
+.subline_tip{
+	width:50px
+}
+.pre_tip,.next_tip {
+	width: 50px;
+}
+
+.page_Num {
+	margin-bottom: 0px;
+	height: 25px;
+	line-height: 23px;
+	width: 30px;
+	margin: 0px 3px 3px 3px;
+}
+
+.page_Numtip {
+	height: 25px;
+	line-height: 25px;
+	right: 37px;
+}
+
+.toall_Numtip {
+	width: 40px;
+}
+
+input {
+	width: 28px;
+	height: 23px;
+	background: transparent;
+	border: 1px solid #424649;
+	text-align: center;
+	color: #ffffff;
+	font-size: 12px !important;
+}

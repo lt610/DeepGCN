@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>PaperPass 权威论文抄袭检测系统</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+<div class="layui-layer-shade" id="layui-layer-shade11" times="11"
+     style="z-index: 19891024; background-color: rgb(0, 0, 0); opacity: 0.3;"></div>
+<div class="layui-layer layui-layer-page layui-layer-prompt" id="layui-layer11" type="page" times="11" showtime="0"
+     contype="string" style="z-index: 19891025; top: 259px; left: 337.5px;">
+    <div class="layui-layer-title" style="cursor: move;color:#e6e6e6;background:#343544">切换模式</div>
+    <div id="" class="layui-layer-content" style="font-size:24px">确认切换至“Word模式”吗？</div><span
+        class="layui-layer-setwin"><a class="layui-layer-ico layui-layer-close layui-layer-close1"
+                                      href="javascript:;"></a></span>
+    <div class="layui-layer-btn layui-layer-btn-" style="text-align: center">
+        <a class="layui-layer-btn0 text_btn" href="../word/word_report.html" >确定</a><a
+            class="layui-layer-btn1">取消</a></div>
+</div>
+<div>
+    <div class="text-center PT30">
+                <div class="change_word">
+            <div class="change_wordtip">切换模式</div>
+    </div>
+                <ul class="pagination"><li><a href="paper_1.html"><span>首页</span></a></li>
+    <li><a href="paper_12.html"><span>上一页</span></a></li>
+    <li><a href="paper_14.html"><span>下一页</span></a></li>
+    <li><a href="paper_17.html"><span>尾页</span></a></li></ul>
+    <div class="ML15 inline-block v-top MT10" style="padding-top: 10px;">
+            页码
+            <span class="g-font-color green">13</span>/<span>17</span>
+            页
+        </div>        <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm addLine" style="margin-left: 45px;">使用辅助线</button>
+    </div>
+    <div class="paper-txt P30 PB0">
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="739">739</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">6.4  基于控制邻居权重的方法</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="740">740</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">我们也可以通过控制结点对邻居结点的聚合权重来缓解过光滑问题。</span> <span class="g-font-color green">理想情况下，A类簇的结点对位于B类簇的邻居结点的聚合权重为0，不同类簇的结点不会产生混合，过光滑问题得到解决。</span> <span class="g-font-color green">我们在基于注意力机制的GAT模型上做了一点改进，提高了模型的运行速度，同时保证性能不受影响。</span> <span class="g-font-color green">GAT利用参数向量学习结点和邻居间的相对重要性[22]，见公式（6.8）表述。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="741">741</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">a0，j=expLeakyReLU(a Wx0Wxj)k∈Nv0expLeakyReLU(a Wx0Wxk)#6.8</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="742">742</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">这里a是可学习的参数向量，用于学习相对重要性。</span> <span class="g-font-color green">W是可学习的参数矩阵，用于对输入特征做线性变换，  是向量拼接操作。</span> <span class="g-font-color green">由于GAT包含许多可学习参数，训练速度相对来说比较慢。</span> <span class="g-font-color green">我们用余弦相似度直接计算相对重要性，代替参数向量a和激活函数LeakyReLU(∙)，见公式（6.9）表述。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="743">743</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">a0，j=expcosWx0，Wxjk∈Nv0expcosWx0，Wxk#6.9</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="744">744</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">6.5  基于平衡局部全局的方法</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="745">745</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">近距离的邻居比远距离的邻居更重要，并且远距离的邻居容易导致过光滑。</span> <span class="g-font-color green">如果GCN能够平衡好局部与全局的信息，就能在一定程度上缓解过光滑问题。</span> <span class="g-font-color green">我们可以借鉴CNN中的残差网络ResNet和密集网络DenseNet[23]的结构来改进GCN，见图6.3。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="746">746</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">图6.3  ResGCN、DenseGCN网络结构</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="747">747</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">提出残差连接的初衷，是让模型的内部结构至少有恒等映射的能力，</span><a href='../sentence_detail/1236.html' target='right' class='g-font-color red'>以保证在堆叠网络的过程中，网络不会因为继续堆叠而产生退化[2]。</a> <span class="g-font-color green">此外，残差连接还有其他一些作用。</span> <span class="g-font-color green">即使批量归一化处理后梯度的模稳定在正常范围，但是梯度的相关性会随着层数增加持续衰减，</span> <span class="g-font-color green">而残差连接可以有效较少这种相关性的衰减[24]。</span> <span class="g-font-color green">另外，浅层特征具有高分辨率低级语义，深层特征具有高级语义低分辨率，而残差连接可以实现不同分辨率特征的组合[25]。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="748">748</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">我们可以将残差连接应用到GCN，从而组合高低层不同范围的邻居信息。</span> <span class="g-font-color green">进一步地，我们可以使用密集连接加强该作用。</span> <span class="g-font-color green">此外，相比较JK-Net，残差连接和密集连接都缓解了较深层产生的输出仍然存在不同类簇间的结点混合的问题</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="749">749</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">我们在残差连接上引入了权重参数，该参数平衡了局部和全局的相对重要性，</span><a href='../sentence_detail/1245.html' target='right' class='g-font-color orange'>α的值越大，说明局部性越重要，见公式（6.10）表述。</a>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="750">750</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Hl+1=σD-12AD-12HlWl+αHl#6.10</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="751">751</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">6.6  基于增强自身特征的方法</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="752">752</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                <a href='../sentence_detail/1248.html' target='right' class='g-font-color orange'>一个结点的信息主要由两部分组成，自身信息和结构信息。</a> <span class="g-font-color green">其中自身信息由结点特征体现，结构信息由邻居结点体现。</span> <span class="g-font-color green">然而，随着层数加深，越来越多的邻居结点被聚合，结点自身的信息越来越匮乏。</span> <span class="g-font-color green">为了缓解该问题，我们对GCN做了一些改进，见公式（6.11）表述，该方法也可用于SGC等模型。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="753">753</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Hl+1=σ1-αD-12AD-12Hl++αH0Wl#6.12</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="754">754</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">该公式相当于在每一层引入了输入层的带权重的跳接，见图6.4。</span> <span class="g-font-color green">从随机游走的角度来看，α表示游走过程中回退到出发结点的概率，也起到了平衡局部和全局的作用。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="755">755</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">图6.4  SelfNet网络结构</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="756">756</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">6.7  实验分析</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="757">757</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">基于图数据预处理的方法</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="758">758</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">实验中采用基于结点相似度的改进方法，将原方法DropEdge作为对照组之一，分别在SGC和GCN模型上进行了实验。</span> <span class="g-font-color green">我们用网格搜索对丢弃比例超参数α进行了优化，搜索空间为[0.1， 0.2， 0.3，</span> <span class="g-font-color green">0.4， 0.5， 0.6， 0.7， 0.8， 0.9， 0.05，</span> <span class="g-font-color green">0.01]，最终确定了9个数据集上各自的最优值，其中原方法DropEdge为[0.2，</span> <span class="g-font-color green">0.1， 0.05， 0.05， 0.01， 0.01， 0.6， 0.1，</span> <span class="g-font-color green">0.01]，基于结点相似度的改进方法为[0.05， 0.05， 0.01， 0.6，</span> <span class="g-font-color green">0.6， 0.7， 0.6， 0.5， 0.6]。</span> <span class="g-font-color green">详细的实验结果见表6.1。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="759">759</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">这里SGC（DR0）和SGC（DR1）分别表示采用了原方法DropEdge和基于结点相似度的改进方法的SGC，</span><a href='../sentence_detail/1267.html' target='right' class='g-font-color orange'>括号里的数字表示取得最佳准确率的层数。</a> <span class="g-font-color green">可以看到，DropEdge对性能的提升有限，而基于结点相似度改进的DropEdge却在多个数据集上表现突出，</span> <span class="g-font-color green">特别是在过光滑比较严重的密集连接数据集上有较大提升，并且取得最佳准确率的层数也有所提高。</span> <span class="g-font-color green">我们也在GCN上进行了实验，实验结果表明，基于结点相似度改进的DropEdge对GCN也有所增益。</span><a href='../sentence_detail/1271.html' target='right' class='g-font-color orange'>此外，GCN模型比SGC模型的整体结果更好，说明非线性变换可以增强学习能力。</a>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="760">760</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">图6.5  Pubmed上基于图数据预处理的方法的实验结果</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="761">761</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">为了排除过拟合和梯度消失/爆炸的混合影响，我们用SGC模型在层数区间[1，16]上进行了实验，见图6.5。</span> <span class="g-font-color green">可以看到，采用了基于结点相似度改进的DropEdge方法后，过光滑问题得到了很大程度的缓解。</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="762">762</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">表6.1  基于图数据预处理的方法的实验结果</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="763">763</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">模型</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="764">764</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">SGC</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="765">765</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">SGC(DR0)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="766">766</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">SGC(DR1)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="767">767</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">GCN</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="768">768</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">GCN(DR0)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="769">769</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">GCN(DR1)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="770">770</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Cora</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="771">771</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">84.34(3)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="772">772</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">85.54(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="773">773</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">84.34(3)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="774">774</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">87.95(3)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="775">775</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">86.75(6)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="776">776</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">87.35(4)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="777">777</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Cite.</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="778">778</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">76.89(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="779">779</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">75.24(1)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="780">780</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">77.36(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="781">781</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">76.18(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="782">782</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">76.65(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="783">783</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">76.65(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="784">784</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Pubm.</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="785">785</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">82.25(1)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="786">786</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">82.18(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="787">787</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">82.3(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="788">788</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">86.92(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="789">789</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">87.04(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="790">790</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">87.2(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="791">791</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Cham.</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="792">792</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">42.98(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="793">793</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">41.01(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="794">794</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">45.83(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="795">795</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">43.2(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="796">796</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">44.3(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="797">797</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">46.27(1)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="798">798</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Squi.</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="799">799</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">28.28(5)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="800">800</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">28.31(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="801">801</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">29.17(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="802">802</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">27.83(6)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="803">803</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">27.64(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="804">804</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">29.08(2)</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+        
+        <div class="paper-section" tpl-section="warp">
+            <span class="label-warning" tpl-section="badge" data-id="805">805</span>
+            <p class="MT20 text-idt25" tpl-section="text">
+                 <span class="g-font-color green">Actor</span>            </p>
+                        <div class="text-right">
+                <button type="button" tpl-section="btn" class="g-btn g-btn-default g-btn-sm MT10">段落修改</button>
+            </div>
+            <div tpl-section="box"></div>
+                    </div>
+            </div>
+    <div class="text-center PB30">
+        <ul class="pagination"><li><a href="paper_1.html"><span>首页</span></a></li>
+    <li><a href="paper_12.html"><span>上一页</span></a></li>
+    <li><a href="paper_14.html"><span>下一页</span></a></li>
+    <li><a href="paper_17.html"><span>尾页</span></a></li></ul>
+    <div class="ML15 inline-block v-top MT10" style="padding-top: 10px;">
+            页码
+            <span class="g-font-color green">13</span>/<span>17</span>
+            页
+        </div>    </div>
+        <div style="text-align: center;padding-top:30px">
+        <a href="http://www.paperpass.com" target="_blank"><img src="http://file.paperpass.com/images/fabiao.jpg"/></a></div>
+        <div class="paper-footer">
+        <p>检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成</p>
+        <p>Copyright © 2007-2020 PaperPass</p>
+    </div>
+</div>
+</body>
+<script type="text/html" template="section">
+    <div class="text-right">
+        <div class="modifyTxt-notice">
+            修改完本段落之后，点击“临时保存”，之后可在上方导航“修改文档”页面中查看修改后的内容
+        </div>
+        <textarea class="form-control resize-none" rows="4" tpl-section="textarea"></textarea>
+        <div class="button-wrap MT10">
+            <button type="button" class="g-btn g-btn-default g-btn-sm red" tpl-section-cancle="btn">取消保存</button>
+            <button type="button" class="g-btn g-btn-default g-btn-sm" tpl-section-save="btn">临时保存</button>
+        </div>
+    </div>
+</script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/Lib.js"></script>
+<script type="text/javascript" src="../js/left.js"></script>
+<script type="text/javascript">
+    Report.report_id = '5ec4c61aa236c0tf3';
+</script>
+<script type="text/javascript">
+    (function(System,$){
+        var sectionEdit = System.Paper.sectionEdit();
+        var sectionSave = System.Paper.sectionSave(null);
+        $(function(){
+            $(document).on('click','[tpl-section=btn]',function(){
+                sectionEdit.call(this);
+            });
+            $(document).on('click','[tpl-section-save=btn]',function(){
+                sectionSave.call(this);
+
+            });
+            $(document).on('click','[tpl-section-cancle=btn]',function(){
+                var $warp = $(this).closest('[tpl-section="warp"]');
+                $warp.find('[tpl-section="box"]').html('');
+            });
+        });
+        // 切换按钮
+        $('.change_word').mouseover(function (e) {
+            $(".change_wordtip").show();
+        }).mouseout(function () {
+            $(".change_wordtip").hide();
+        }).click(function(){
+            $(".layui-layer-shade").css("display","block");
+            $(".layui-layer").css("display","block");
+        });
+        $(".text_btn").click(function(){
+            parent.postMessage("text_right","*");
+        });
+        //  传值给detail_report
+        parent.postMessage("width_60","*");
+        // 传值给检测报告详细版
+        parent.parent.postMessage("text","*");
+    })(Report,jQuery)
+</script>
+</html>
