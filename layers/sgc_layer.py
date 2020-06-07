@@ -6,6 +6,7 @@ import numpy as np
 from layers.pair_norm import PairNorm
 from dgl.nn.pytorch import edge_softmax
 
+
 class SGCLayer(nn.Module):
     def __init__(self, in_feats, out_feats, k=1, cached=False, bias=False, graph_norm=False, pair_norm=False, dropedge=0, cutgraph=0):
         super(SGCLayer, self).__init__()
