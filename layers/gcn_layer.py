@@ -67,6 +67,7 @@ class GCNLayer(nn.Module):
         #     self.register_buffer('beta', th.Tensor([init_beta]))
         #     self.self_fc = nn.Linear(t, out_dim, bias)
 
+#ceshi
         if residual:
             if learn_beta:
                 self.beta = nn.Parameter(th.Tensor([init_beta]))
