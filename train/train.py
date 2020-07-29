@@ -41,6 +41,7 @@ def train_net(num_epoch, model, optimizer, early_stopping, g, features, labels, 
         val_accs.append(val_acc)
 
         early_stopping(val_acc, model)
+
         print(
             "Epoch {:05d} | Loss {:.4f} | Train Acc {:.4f} | Val Loss {:.4f} | Val Acc {:.4f} | Time(s) {:.4f}".format(
                 epoch, loss.item(), train_acc, val_loss, val_acc, np.mean(dur)))

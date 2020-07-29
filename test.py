@@ -162,6 +162,19 @@ import dgl.function as fn
 #
 # draw("Cora", "WD", y1, y2, y3, y4)
 
+
+x = th.Tensor([1, 2, 3])
+print(x.size())
+print(x)
+y = x.unsqueeze(1)
+print(y.size())
+print(y)
+z = th.Tensor([[1, 1, 1],
+               [2, 2, 2],
+               [3, 3, 3]])
+print(x * z)
+print(y * z)
+
 # title = 'Pubmed'
 # method = 'WD'
 # train_accs0 = [64.94, 90.81, 88.81, 87.84, 87.3, 87.09, 86.54, 86.24, 85.55, 85.61, 86.23, 85.63, 85.58, 85.03, 56.97, 48.12]
@@ -259,3 +272,4 @@ import dgl.function as fn
 # test_accs0 = [80.38, 82.71, 80.48, 79.97, 79.92, 79.56, 79.06, 79.01, 79.21, 65.97, 62.73, 65.52, 64.66, 63.74, 64.15, 61.82]
 # test_accs1 = [80.93, 81.49, 82.76, 83.42, 82.91, 82.76, 81.59, 82.76, 82.76, 83.47, 83.42, 82.76, 82.76, 83.47, 82.76, 83.47]
 # draw(title, method, train_accs0, train_accs1, test_accs0, test_accs1)
+
